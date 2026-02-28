@@ -1,34 +1,27 @@
 /* =====================================================
-   MOVIENATION — ADMIN AUTH (admin access only)
+   MOVIENATION — ADMIN AUTH
+   Single admin account. Session lasts 8 hours.
    ===================================================== */
 const AdminAuth = (() => {
-  const KEY     = 'mn_admin_ses';
-  const ADMIN   = 'admin@movienation.com';
-  const TTL     = 8 * 60 * 60 * 1000; // 8-hour session
+  const ADMIN_EMAIL = 'tuyizereomega@gmail.com';
+  const ADMIN_PASS  = 'tuyizere123@';
+  const KEY         = 'mn_admin_sess';
+  const TTL         = 8 * 60 * 60 * 1000; // 8h
 
-  const save = v => { try { localStorage.setItem(KEY, JSON.stringify(v)) } catch(e) {} };
-  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) } catch(e) { return null } };
-  const del  = () => localStorage.removeItem(KEY);
-
-  function check() {
-    const s = load();
-    if (!s) return null;
-    if (s.exp < Date.now()) { del(); return null; }
-    return s;
+  function login(email, pw) {
+    if (email.toLowerCase().trim() !== ADMIN_EMAIL.toLowerCase()) return { ok:false, err:'Email not found.' };
+    if (pw !== ADMIN_PASS) return { ok:false, err:'Incorrect password.' };
+    localStorage.setItem(KEY, JSON.stringify({ ts: Date.now() }));
+    return { ok:true };
   }
-
-  function login(email, password) {
-    if (!email || !password) return { ok: false, err: 'Email and password are required.' };
-    if (email.toLowerCase().trim() !== ADMIN)
-      return { ok: false, err: 'No admin account found with that email.' };
-    // Any password works for demo — replace with real hash check for production
-    const ses = { email: ADMIN, role: 'admin', exp: Date.now() + TTL };
-    save(ses);
-    return { ok: true, ses };
+  function logout()    { localStorage.removeItem(KEY) }
+  function isLoggedIn() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY));
+      return s && (Date.now() - s.ts < TTL);
+    } catch(e) { return false }
   }
-
-  function logout() { del(); }
-  function isLoggedIn() { return !!check(); }
+  function check() { if (!isLoggedIn()) location.href='admin.html' }
 
   return { login, logout, isLoggedIn, check };
 })();
