@@ -6,12 +6,12 @@
 <title>About MovieNation</title>
 <meta name="description" content="About MovieNation — the premier cinema discovery platform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital@1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="preloader"><div class="pre-logo">MOVIENATION</div><div class="pre-bar"><div class="pre-bar-fill"></div></div></div>
+<div id="preloader"><div class="pre-logo">MOVIENATION</div><div class="pre-bar"><div class="pre-fill"></div></div></div>
 <header id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>MOVIENATION</a>
@@ -21,8 +21,8 @@
       <a href="movies.html?genre=Action">Action</a>
       <a href="movies.html?genre=Sci-Fi">Sci-Fi</a>
       <a href="movies.html?genre=Horror">Horror</a>
+      <a href="movies.html?genre=Drama">Drama</a>
       <a href="upcoming.html">Upcoming</a>
-      <a href="watchlist.html">Watchlist</a>
     </nav>
     <div class="nav-search">
       <i class="ri-search-line si"></i>
@@ -31,32 +31,18 @@
     </div>
     <div class="nav-actions">
       <button class="nav-icon-btn theme-btn" title="Toggle theme"></button>
-      <div id="nav-auth"><button class="btn-signin" onclick="openM('ml')">Sign In</button></div>
-      <div id="nav-user" style="display:none">
-        <div class="uwrap">
-          <div class="upill"><div class="uav"></div><span class="uname"></span><i class="ri-arrow-down-s-line" style="font-size:.85rem;color:var(--muted)"></i></div>
-          <div class="udrop">
-            <div class="udrop-head">
-              <div style="font-weight:700;font-size:.875rem" class="udn"></div>
-              <div class="udrop-email"></div>
-              <span class="urole user"></span>
-            </div>
-            <div class="udrop-item" onclick="location.href='watchlist.html'"><i class="ri-bookmark-line"></i>My Watchlist</div>
-            <div class="udrop-item admin-only" onclick="location.href='admin.html'" style="display:none"><i class="ri-settings-3-line"></i>Admin Panel</div>
-            <div class="udrop-sep"></div>
-            <div class="udrop-item danger" onclick="doLogout()"><i class="ri-logout-box-r-line"></i>Sign Out</div>
-          </div>
-        </div>
-      </div>
-      <button class="burger" id="burger-btn"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <nav id="mnav" aria-label="Mobile navigation">
   <a href="index.html">Home</a>
   <a href="movies.html">Movies</a>
+  <a href="movies.html?genre=Action">Action</a>
+  <a href="movies.html?genre=Sci-Fi">Sci-Fi</a>
+  <a href="movies.html?genre=Horror">Horror</a>
+  <a href="movies.html?genre=Drama">Drama</a>
   <a href="upcoming.html">Upcoming</a>
-  <a href="watchlist.html">Watchlist</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
 </nav>
@@ -64,43 +50,43 @@
 <div class="ptop" style="text-align:center;padding:90px 0 64px">
   <div class="wrap">
     <h1 class="ptop-title">About MovieNation</h1>
-    <p class="ptop-sub" style="max-width:520px;margin:12px auto 0">Built by film lovers for film lovers. A place where great cinema is discovered, rated, and celebrated.</p>
+    <p class="ptop-sub" style="max-width:520px;margin:12px auto 0">Built by film lovers for film lovers — a place where great cinema is discovered and celebrated.</p>
   </div>
 </div>
 <main>
-  <section class="sec-sm">
+  <section class="sec-alt" style="padding:clamp(32px,5vw,56px) 0">
     <div class="wrap">
       <div class="stats-grid">
-        <div class="scard"><span class="scard-n">10K+</span><span class="scard-l">Films in Database</span></div>
-        <div class="scard"><span class="scard-n">500K+</span><span class="scard-l">Registered Users</span></div>
-        <div class="scard"><span class="scard-n">2M+</span><span class="scard-l">Reviews Written</span></div>
-        <div class="scard"><span class="scard-n">150+</span><span class="scard-l">Countries</span></div>
+        <div class="stat-card"><span class="stat-n">10K+</span><span class="stat-l">Films in Database</span></div>
+        <div class="stat-card"><span class="stat-n">500K+</span><span class="stat-l">Monthly Visitors</span></div>
+        <div class="stat-card"><span class="stat-n">2M+</span><span class="stat-l">Trailer Views</span></div>
+        <div class="stat-card"><span class="stat-n">150+</span><span class="stat-l">Countries Reached</span></div>
       </div>
     </div>
   </section>
-  <div class="wrap" style="padding-bottom:52px">
-    <div class="ad-slot ad-inline" style="border-radius:var(--r-lg)"><i class="ri-advertisement-line"></i><span>Advertisement</span></div>
+  <div class="wrap" style="padding:40px 0 0">
+    <div class="ad-slot ad-inline" style="border-radius:14px;margin-bottom:52px"><i class="ri-advertisement-line"></i><span>Advertisement</span></div>
   </div>
-  <section class="section section-alt">
+  <section class="section">
     <div class="wrap">
       <div class="sec-label">What We Offer</div>
       <h2 class="sec-title" style="margin-bottom:28px">Platform Features</h2>
       <div class="features-grid">
-        <div class="feat-card"><i class="ri-search-eye-line"></i><h3>Smart Discovery</h3><p>Filter by genre, year, rating and more. Find exactly what you want to watch.</p></div>
-        <div class="feat-card"><i class="ri-play-circle-line"></i><h3>Watch &amp; Download</h3><p>Direct Watch Now and Download Now links on every movie card and detail page.</p></div>
-        <div class="feat-card"><i class="ri-star-line"></i><h3>Community Ratings</h3><p>Rate films on a 10-point scale and see what the global community thinks.</p></div>
-        <div class="feat-card"><i class="ri-bookmark-line"></i><h3>Personal Watchlist</h3><p>Save films to your private watchlist, accessible from any device after login.</p></div>
-        <div class="feat-card"><i class="ri-notification-3-line"></i><h3>Release Alerts</h3><p>Get notified when upcoming films release. Never miss a premiere again.</p></div>
-        <div class="feat-card"><i class="ri-shield-check-line"></i><h3>Secure Accounts</h3><p>Rate-limited login, session management, encrypted passwords. Your data is safe.</p></div>
+        <div class="feat-card"><i class="ri-search-eye-line"></i><h3>Smart Discovery</h3><p>Filter by genre, year, rating. Find exactly what you want to watch next.</p></div>
+        <div class="feat-card"><i class="ri-play-circle-line"></i><h3>Watch &amp; Download</h3><p>Direct Watch Now and Download Now links on every movie — one click away.</p></div>
+        <div class="feat-card"><i class="ri-film-line"></i><h3>Official Trailers</h3><p>Watch embedded YouTube trailers for every movie, right on the page.</p></div>
+        <div class="feat-card"><i class="ri-time-line"></i><h3>Upcoming Films</h3><p>Live countdown timers for upcoming releases so you never miss a premiere.</p></div>
+        <div class="feat-card"><i class="ri-share-line"></i><h3>Easy Sharing</h3><p>Share any movie via Facebook, Twitter, WhatsApp or Telegram in one tap.</p></div>
+        <div class="feat-card"><i class="ri-moon-line"></i><h3>Dark &amp; Light Mode</h3><p>Switch between dark and light themes to suit your viewing environment.</p></div>
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="wrap" style="max-width:640px;margin:0 auto;text-align:center">
+  <section class="section sec-alt">
+    <div class="wrap" style="max-width:640px;margin:0 auto">
       <div class="cta-box">
-        <h2 class="cta-title">Ready to Start?</h2>
-        <p class="cta-sub">Create a free account and unlock all features instantly.</p>
-        <button class="btn-amber" onclick="openM('mr')"><i class="ri-user-add-line"></i>Create Free Account</button>
+        <h2 class="cta-title">Start Discovering</h2>
+        <p class="cta-sub">Thousands of films waiting to be found. Start browsing now.</p>
+        <a href="movies.html" class="btn-amber"><i class="ri-compass-3-line"></i>Browse Movies</a>
       </div>
     </div>
   </section>
@@ -108,11 +94,13 @@
 
 <footer id="footer">
   <div class="wrap">
-    <div class="ad-slot ad-banner" style="margin-bottom:48px;border-radius:var(--r-lg)"><i class="ri-advertisement-line"></i><span>Advertisement</span></div>
+    <div class="ad-slot ad-banner" style="margin-bottom:48px;border-radius:16px">
+      <i class="ri-advertisement-line"></i><span>Advertisement</span>
+    </div>
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="flogo">MOVIENATION</span>
-        <p class="fdesc">Your premier destination for movie discovery, trailers, reviews and entertainment. Find what to watch next.</p>
+        <p class="fdesc">Your premier destination for movie discovery, trailers, and entertainment. Find what to watch next.</p>
         <div class="fsocial">
           <a href="#" class="fsoc" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
           <a href="#" class="fsoc" aria-label="Twitter"><i class="ri-twitter-x-fill"></i></a>
@@ -124,8 +112,8 @@
       <div class="fc"><h5>Explore</h5><ul>
         <li><a href="movies.html">All Movies</a></li>
         <li><a href="movies.html?sort=rating">Top Rated</a></li>
-        <li><a href="upcoming.html">Upcoming</a></li>
-        <li><a href="watchlist.html">My Watchlist</a></li>
+        <li><a href="movies.html?filter=new">New Releases</a></li>
+        <li><a href="upcoming.html">Upcoming Films</a></li>
       </ul></div>
       <div class="fc"><h5>Genres</h5><ul>
         <li><a href="movies.html?genre=Action">Action</a></li>
@@ -151,126 +139,22 @@
     </div>
   </div>
 </footer>
-<div id="toasts"></div>
-<button id="btt" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
-
-<!-- Trailer -->
+<!-- Trailer Modal -->
 <div class="mbg" id="tm">
   <div class="tmodal">
     <div class="tmodal-head">
       <span class="trailer-title"></span>
-      <button class="mbox-close" onclick="closeTrailer()"><i class="ri-close-line"></i></button>
+      <button class="mbox-close" onclick="closeTrailer()" aria-label="Close"><i class="ri-close-line"></i></button>
     </div>
-    <div class="vid-wrap" style="margin:0;border-radius:0 0 var(--r-xl) var(--r-xl);border:none"></div>
+    <div class="vid-wrap" style="margin:0;border-radius:0 0 22px 22px;border:none"></div>
   </div>
 </div>
 
-<!-- Login -->
-<div class="mbg" id="ml">
-  <div class="mbox">
-    <button class="mbox-close" onclick="closeM('ml')"><i class="ri-close-line"></i></button>
-    <span class="mlogo">MOVIENATION</span>
-    <h2 class="mtitle">Welcome Back</h2>
-    <p class="msub">Sign in to rate movies, comment, and build your watchlist.</p>
-    <div class="secbar"><i class="ri-shield-check-fill"></i>Encrypted &middot; Rate limited &middot; Session protected</div>
-    <div class="lockout" id="llk" style="display:none"></div>
-    <form id="fl" novalidate>
-      <div class="fg">
-        <label for="le">Email</label>
-        <input class="fi" type="email" id="le" placeholder="you@example.com" autocomplete="email" required>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <div class="fg">
-        <label for="lp">Password</label>
-        <div class="fiwrap">
-          <input class="fi" type="password" id="lp" placeholder="Your password" autocomplete="current-password" required>
-          <i class="feye ri-eye-line"></i>
-        </div>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <div class="form-row-split">
-        <label class="check-label"><input type="checkbox" id="lrem">Remember me</label>
-        <a class="link-amber" onclick="switchToForgot()">Forgot password?</a>
-      </div>
-      <button type="submit" class="btn-block" id="lbtn">Sign In</button>
-    </form>
-    <div class="mswitch">No account? <a onclick="switchToReg()">Create one free &rarr;</a></div>
-    <p class="demo-note">Demo admin: admin@movienation.com (any password)</p>
-  </div>
-</div>
-
-<!-- Register -->
-<div class="mbg" id="mr">
-  <div class="mbox" style="max-width:480px">
-    <button class="mbox-close" onclick="closeM('mr')"><i class="ri-close-line"></i></button>
-    <span class="mlogo">MOVIENATION</span>
-    <h2 class="mtitle">Join Free</h2>
-    <p class="msub">Rate films, write reviews, build your watchlist &mdash; forever free.</p>
-    <div class="secbar"><i class="ri-shield-check-fill"></i>Your data is encrypted and never sold</div>
-    <form id="fr" novalidate>
-      <div class="fg">
-        <label for="rn">Full Name</label>
-        <input class="fi" type="text" id="rn" placeholder="John Doe" autocomplete="name" required>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <div class="fg">
-        <label for="re">Email</label>
-        <input class="fi" type="email" id="re" placeholder="you@example.com" autocomplete="email" required>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <div class="fg">
-        <label for="rp">Password</label>
-        <div class="fiwrap">
-          <input class="fi" type="password" id="rp" placeholder="Min. 8 characters" autocomplete="new-password" minlength="8" required>
-          <i class="feye ri-eye-line"></i>
-        </div>
-        <div class="pwstr">
-          <div class="pwbars"><div class="pwbar"></div><div class="pwbar"></div><div class="pwbar"></div><div class="pwbar"></div><div class="pwbar"></div><div class="pwbar"></div></div>
-          <span class="pwtxt" id="pwtxt"></span>
-        </div>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <div class="fg">
-        <label for="rp2">Confirm Password</label>
-        <div class="fiwrap">
-          <input class="fi" type="password" id="rp2" placeholder="Repeat password" autocomplete="new-password" required>
-          <i class="feye ri-eye-line"></i>
-        </div>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <label class="check-label" style="margin-bottom:18px;align-items:flex-start;line-height:1.5">
-        <input type="checkbox" id="rterms" style="flex-shrink:0;margin-top:3px">
-        I agree to the <a href="terms.html" class="link-amber" target="_blank">Terms</a> and <a href="privacy.html" class="link-amber" target="_blank">Privacy Policy</a>
-      </label>
-      <button type="submit" class="btn-block" id="rbtn">Create Account</button>
-    </form>
-    <div class="mswitch">Have an account? <a onclick="switchToLogin()">Sign in &rarr;</a></div>
-  </div>
-</div>
-
-<!-- Forgot -->
-<div class="mbg" id="mf">
-  <div class="mbox" style="max-width:400px">
-    <button class="mbox-close" onclick="closeM('mf')"><i class="ri-close-line"></i></button>
-    <span class="mlogo">MOVIENATION</span>
-    <h2 class="mtitle">Reset Password</h2>
-    <p class="msub">Enter your email and we will send a secure reset link.</p>
-    <div class="secbar" id="fsuc" style="display:none"><i class="ri-mail-check-line"></i>Reset email sent! Check your inbox.</div>
-    <form id="ff" novalidate>
-      <div class="fg">
-        <label for="fe">Email Address</label>
-        <input class="fi" type="email" id="fe" placeholder="you@example.com" autocomplete="email" required>
-        <div class="ferr" style="display:none"></div>
-      </div>
-      <button type="submit" class="btn-block">Send Reset Link</button>
-    </form>
-    <div class="mswitch" style="margin-top:14px"><a onclick="switchToLogin()">&larr; Back to Sign In</a></div>
-  </div>
-</div>
+<div id="toasts"></div>
+<button id="btt" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
 
 <script src="js/data.js"></script>
 <script src="js/data-manager.js"></script>
-<script src="js/auth.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
