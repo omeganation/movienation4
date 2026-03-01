@@ -8,13 +8,15 @@
 /* ── OPTION A: Hardcode your keys here ──────────────────
    OR use Option B (paste in Admin → Settings → Connect)
    ─────────────────────────────────────────────────────── */
-const FB_CONFIG = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
+  authDomain: "movienation-1.web.app",
+  projectId: "movienation-1",
+  storageBucket: "movienation-1.firebasestorage.app",
+  messagingSenderId: "236535077737",
+  appId: "1:236535077737:web:9cab53046c037127e9fbf8",
+  measurementId: "G-BCT6G788XD"
 };
 
 /* ── DO NOT EDIT BELOW ── */
