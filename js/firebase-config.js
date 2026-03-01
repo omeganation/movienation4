@@ -29,12 +29,14 @@ const firebaseConfig = {
   try {
     const saved = localStorage.getItem('mn_fb_config');
     if (saved) cfg = JSON.parse(saved);
-  } catch(e) {}
+  } catch (e) { }
 
   // Fall back to hardcoded
+  // Fall back to hardcoded
   if (!cfg) {
-    const allOk = Object.valuesObject.values(firebaseConfig).every(v => !String(v).startsWith('YOUR_'));
-    if (allOk) cfg = FB_CONFIG;
+    const allOk = Object.values(firebaseConfig)
+      .every(v => v && !String(v).startsWith('YOUR_'));
+    if (allOk) cfg = firebaseConfig;
   }
 
   if (!cfg) {
