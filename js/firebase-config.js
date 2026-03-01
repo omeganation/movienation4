@@ -9,9 +9,10 @@
    OR use Option B (paste in Admin → Settings → Connect)
    ─────────────────────────────────────────────────────── */
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const FB_CONFIG = {
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
   apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
-  authDomain: "movienation-1.web.app",
+  authDomain: "movienation-1.firebaseapp.com",
   projectId: "movienation-1",
   storageBucket: "movienation-1.firebasestorage.app",
   messagingSenderId: "236535077737",
@@ -32,7 +33,7 @@ const FB_CONFIG = {
 
   // Fall back to hardcoded
   if (!cfg) {
-    const allOk = Object.values(FB_CONFIG).every(v => !String(v).startsWith('YOUR_'));
+    const allOk = Object.valuesObject.values(firebaseConfig).every(v => !String(v).startsWith('YOUR_'));
     if (allOk) cfg = FB_CONFIG;
   }
 
