@@ -9,7 +9,7 @@
    OR use Option B (paste in Admin → Settings → Connect)
    ─────────────────────────────────────────────────────── */
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const FB_CONFIG = {
   apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
   authDomain: "movienation-1.web.app",
   projectId: "movienation-1",
