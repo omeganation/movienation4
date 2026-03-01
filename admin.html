@@ -35,6 +35,29 @@ function doLogin() {
 }
 </script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
+    authDomain: "movienation-1.firebaseapp.com",
+    projectId: "movienation-1",
+    appId: "1:236535077737:web:9cab53046c037127e9fbf8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const ADMIN_EMAIL = "tuyizereomega@gmail.com"; // ONLY YOU
+
+  onAuthStateChanged(auth, user => {
+    if (!user || user.email !== ADMIN_EMAIL) {
+      window.location.href = "/login.html";
+    }
+  });
+</script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
 <style>
