@@ -818,13 +818,24 @@ function setFilter(val) {
    FEATURED TOGGLE
 ════════════════════════════════════════════════ */
 function toggleFeat(id, btn) {
-  DB.toggleFeatured(id).then(function(m){
-    if (!m) return;
-    btn.className='act act-feat'+(m.featured?' is-feat':'');
-    btn.querySelector('i').className='ri-star-'+(m.featured?'fill':'line');
-    toast((m.featured?'Added to':'Removed from')+' hero slider!','success');
-    renderDashboard();
-  }).catch(function(e){ toast('Error: '+e.message,'error'); });
+  try {
+    var LS_KEY = 'mn_movies_db';
+    var arr = JSON.parse(localStorage.getItem(LS_KEY) || 'null') || MOVIES.slice();
+    var idx = arr.findIndex(function(m){ return m.id === +id; });
+    if (idx === -1) { toast('Movie not found.','error'); return; }
+    arr[idx].featured = !arr[idx].featured;
+    localStorage.setItem(LS_KEY, JSON.stringify(arr));
+    var isFeat = arr[idx].featured;
+    btn.className = 'act act-feat' + (isFeat ? ' is-feat' : '');
+    btn.querySelector('i').className = 'ri-star-' + (isFeat ? 'fill' : 'line');
+    toast((isFeat ? 'Added to' : 'Removed from') + ' hero slider!', 'success');
+    DB.init();
+    DB.onReady(function(){ renderDashboard(); });
+    /* sync to Firestore in background */
+    if (window.MN_FIRESTORE) {
+      window.MN_FIRESTORE.collection('movies').doc(String(id)).update({featured: isFeat}).catch(function(){});
+    }
+  } catch(e) { toast('Error: '+e.message,'error'); }
 }
 
 /* ════════════════════════════════════════════════
@@ -875,56 +886,116 @@ function saveMovie() {
   var genres = gv('f-genres').trim();
   var desc   = gv('f-desc').trim();
   var poster = gv('f-poster').trim();
-  if (!title||!year||!genres||!desc||!poster) {
-    toast('Required: Title, Year, Genres, Description, Poster URL.','error'); return;
-  }
-  var btn=document.getElementById('modal-save');
-  btn.disabled=true; btn.innerHTML='<i class="ri-loader-4-line"></i>Saving…';
-  var badge='';
-  if(document.getElementById('f-b-top').checked) badge='top';
-  if(document.getElementById('f-b-new').checked) badge='new';
-  if(document.getElementById('f-b-soon').checked) badge='soon';
-  var data={
-    title, year:+year,
-    director:gv('f-director'), duration:gv('f-duration')||'TBA', studio:gv('f-studio'),
-    rating:gv('f-rating')?+gv('f-rating'):null, votes:+gv('f-votes')||0,
-    genres:genres.split(',').map(function(s){return s.trim();}).filter(Boolean),
-    cast:gv('f-cast').split(',').map(function(s){return s.trim();}).filter(Boolean),
-    castImg: editId ? ((DB.byId(editId)||{}).castImg||[]) : [],
-    tagline:gv('f-tagline'), desc, longDesc:gv('f-longdesc'),
-    poster, backdrop:gv('f-backdrop'), watchUrl:gv('f-watch'), downloadUrl:gv('f-download'),
-    trailer:gv('f-trailer'), releaseDate:gv('f-reldate')||null,
-    featured:document.getElementById('f-featured').checked,
-    isNew:document.getElementById('f-new').checked,
-    upcoming:document.getElementById('f-upcoming').checked,
-    badge
+  if (!title)  { toast('Title is required.','error'); return; }
+  if (!year)   { toast('Year is required.','error'); return; }
+  if (!genres) { toast('At least one genre is required.','error'); return; }
+  if (!desc)   { toast('Description is required.','error'); return; }
+  if (!poster) { toast('Poster URL is required.','error'); return; }
+
+  var badge = '';
+  if (document.getElementById('f-b-top').checked)  badge = 'top';
+  if (document.getElementById('f-b-new').checked)  badge = 'new';
+  if (document.getElementById('f-b-soon').checked) badge = 'soon';
+
+  var data = {
+    title:    title,
+    year:     +year,
+    director: gv('f-director'),
+    duration: gv('f-duration') || 'TBA',
+    studio:   gv('f-studio'),
+    rating:   gv('f-rating') ? +gv('f-rating') : null,
+    votes:    +gv('f-votes') || 0,
+    genres:   genres.split(',').map(function(s){ return s.trim(); }).filter(Boolean),
+    cast:     gv('f-cast').split(',').map(function(s){ return s.trim(); }).filter(Boolean),
+    castImg:  editId ? ((DB.byId(editId)||{}).castImg||[]) : [],
+    tagline:  gv('f-tagline'),
+    desc:     desc,
+    longDesc: gv('f-longdesc'),
+    poster:   poster,
+    backdrop: gv('f-backdrop'),
+    watchUrl: gv('f-watch'),
+    downloadUrl: gv('f-download'),
+    trailer:  gv('f-trailer'),
+    releaseDate: gv('f-reldate') || null,
+    featured: document.getElementById('f-featured').checked,
+    isNew:    document.getElementById('f-new').checked,
+    upcoming: document.getElementById('f-upcoming').checked,
+    badge:    badge
   };
-  var p = editId ? DB.update(editId,data) : DB.add(data);
-  p.then(function(){
-    var msg = DB.isFirestore()
-      ? '"'+title+'" is now LIVE on your website! ✓'
-      : '"'+title+'" saved locally. Connect Firebase to go live.';
-    toast(msg,'success');
+
+  /* ── SAVE DIRECTLY TO LOCALSTORAGE (synchronous, never hangs) ── */
+  try {
+    var LS_KEY  = 'mn_movies_db';
+    var META_KEY = 'mn_meta';
+    var arr = JSON.parse(localStorage.getItem(LS_KEY) || 'null') || MOVIES.slice();
+
+    if (editId) {
+      /* UPDATE */
+      var idx = arr.findIndex(function(m){ return m.id === +editId; });
+      if (idx === -1) { toast('Movie not found — try refreshing.','error'); return; }
+      data.id = +editId;
+      arr[idx] = data;
+    } else {
+      /* ADD — get next id */
+      var meta = JSON.parse(localStorage.getItem(META_KEY) || '{}');
+      var nextId = meta.nextId || (Math.max.apply(null, arr.map(function(m){return m.id||0;}).concat([0])) + 1);
+      data.id = nextId;
+      meta.nextId = nextId + 1;
+      localStorage.setItem(META_KEY, JSON.stringify(meta));
+      arr.push(data);
+    }
+
+    localStorage.setItem(LS_KEY, JSON.stringify(arr));
+
+    /* log the action */
+    var logKey = 'mn_activity';
+    var logs = JSON.parse(localStorage.getItem(logKey) || '[]');
+    logs.unshift({ action: editId ? 'Updated' : 'Added', title: title, ts: new Date().toISOString() });
+    if (logs.length > 100) logs.length = 100;
+    localStorage.setItem(logKey, JSON.stringify(logs));
+
+    toast('"' + title + '" ' + (editId ? 'updated' : 'added') + ' successfully! ✓', 'success');
     closeModal('movie-modal');
-    refreshAll();
-    editId=null;
-  }).catch(function(e){
-    toast('Save failed: '+e.message,'error');
-  }).finally(function(){
-    btn.disabled=false;
-    btn.innerHTML=editId?'<i class="ri-save-line"></i>Save Changes':'<i class="ri-add-line"></i>Add Movie';
-  });
+
+    /* re-init DB cache from localStorage so table refreshes correctly */
+    var savedId = editId;
+    editId = null;
+    DB.init();
+    DB.onReady(function(){ refreshAll(); });
+
+    /* also push to Firestore in background if connected (non-blocking) */
+    if (window.MN_FIRESTORE) {
+      window.MN_FIRESTORE.collection('movies').doc(String(data.id)).set(data)
+        .then(function(){ toast('"'+title+'" is now LIVE on your website! 🔥','success'); })
+        .catch(function(e){ console.warn('Firestore sync failed (local save succeeded):', e.message); });
+    }
+
+  } catch(err) {
+    toast('Save failed: ' + err.message, 'error');
+  }
 }
 
 /* ════════════════════════════════════════════════
    DELETE
 ════════════════════════════════════════════════ */
 function delMovie(id, title) {
-  confirm2('Delete Movie?','Delete "'+title+'"? This cannot be undone.','Delete', function(){
-    DB.remove(id).then(function(){
+  confirm2('Delete Movie?', 'Delete "'+title+'"? This cannot be undone.', 'Delete', function(){
+    try {
+      var LS_KEY = 'mn_movies_db';
+      var arr = JSON.parse(localStorage.getItem(LS_KEY) || 'null') || MOVIES.slice();
+      arr = arr.filter(function(m){ return m.id !== +id; });
+      localStorage.setItem(LS_KEY, JSON.stringify(arr));
+      var logs = JSON.parse(localStorage.getItem('mn_activity') || '[]');
+      logs.unshift({ action:'Deleted', title:title, ts:new Date().toISOString() });
+      localStorage.setItem('mn_activity', JSON.stringify(logs));
       toast('"'+title+'" deleted.','info');
-      refreshAll();
-    }).catch(function(e){ toast('Error: '+e.message,'error'); });
+      DB.init();
+      DB.onReady(function(){ refreshAll(); });
+      /* sync to Firestore */
+      if (window.MN_FIRESTORE) {
+        window.MN_FIRESTORE.collection('movies').doc(String(id)).delete().catch(function(){});
+      }
+    } catch(e) { toast('Delete failed: '+e.message,'error'); }
   });
 }
 

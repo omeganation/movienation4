@@ -7,7 +7,7 @@
 
 /* ── MOVIES ── */
 const MOVIES = [
-  []
+  
 ];
 
 const GENRES = ["Action","Sci-Fi","Horror","Drama","Comedy","Thriller","Animation","Documentary","Adventure","Romance","History"];
