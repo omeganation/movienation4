@@ -1,283 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>MovieNation — Stream & Discover the Best Films</title>
-  <meta name="description"
-    content="Discover, watch and download the best movies. Browse trending, top rated, and new releases on MovieNation.">
-  <meta property="og:title" content="MovieNation">
-  <meta property="og:description" content="Stream and discover the best films online.">
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-  <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
-  <link rel="manifest" href="/assets/icons/site.webmanifest">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MovieNation — Stream & Discover the Best Films</title>
+<meta name="description" content="Discover, watch and download the best movies. Browse trending, top rated, and new releases on MovieNation.">
+<meta property="og:title" content="MovieNation">
+<meta property="og:description" content="Stream and discover the best films online.">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+<link rel="manifest" href="/assets/icons/site.webmanifest">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-  <!-- PRELOADER -->
-  <div id="preloader">
-    <div class="pre-logo">MOVIENATION</div>
-    <div class="pre-tagline">Stream · Discover · Download</div>
-    <div class="pre-bar">
-      <div class="pre-fill"></div>
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-logo">MOVIENATION</div>
+  <div class="pre-tagline">Stream · Discover · Download</div>
+  <div class="pre-bar"><div class="pre-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIE<span style="color:var(--text)">NATION</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="movies.html">Movies</a>
+      <a href="movies.html?genre=Action">Action</a>
+      <a href="movies.html?genre=Sci-Fi">Sci-Fi</a>
+      <a href="movies.html?genre=Horror">Horror</a>
+      <a href="movies.html?genre=Drama">Drama</a>
+      <a href="upcoming.html">Upcoming</a>
+    </div>
+    <div class="nav-search">
+      <i class="ri-search-line si"></i>
+      <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off" aria-label="Search movies">
+      <div id="sdrop"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-btn" title="Toggle theme" aria-label="Toggle dark/light mode"></button>
+      <button id="burger-btn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
+</nav>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-inner">
-      <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIE<span
-          style="color:var(--text)">NATION</span></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="movies.html">Movies</a>
-        <a href="movies.html?genre=Action">Action</a>
-        <a href="movies.html?genre=Sci-Fi">Sci-Fi</a>
-        <a href="movies.html?genre=Horror">Horror</a>
-        <a href="movies.html?genre=Drama">Drama</a>
-        <a href="upcoming.html">Upcoming</a>
-      </div>
-      <div class="nav-search">
-        <i class="ri-search-line si"></i>
-        <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off"
-          aria-label="Search movies">
-        <div id="sdrop"></div>
-      </div>
-      <div class="nav-actions">
-        <button class="nav-icon-btn theme-btn" title="Toggle theme" aria-label="Toggle dark/light mode"></button>
-        <button id="burger-btn" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MOBILE NAV -->
-  <div id="mnav" aria-hidden="true">
-    <div class="mnav-logo">MOVIENATION</div>
-    <a href="index.html"><i class="ri-home-line"></i>Home</a>
-    <a href="movies.html"><i class="ri-film-line"></i>Movies</a>
-    <a href="upcoming.html"><i class="ri-time-line"></i>Upcoming</a>
-    <a href="movies.html?genre=Action"><i class="ri-sword-line"></i>Action</a>
-    <a href="movies.html?genre=Sci-Fi"><i class="ri-rocket-line"></i>Sci-Fi</a>
-    <a href="movies.html?genre=Horror"><i class="ri-skull-line"></i>Horror</a>
-    <a href="movies.html?genre=Drama"><i class="ri-theatre-line"></i>Drama</a>
-    <a href="about.html"><i class="ri-information-line"></i>About</a>
-    <a href="contact.html"><i class="ri-mail-line"></i>Contact</a>
-    <div class="mnav-search">
-      <div class="mnav-search-wrap">
-        <i class="ri-search-line"></i>
-        <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off">
-      </div>
+<!-- MOBILE NAV -->
+<div id="mnav" aria-hidden="true">
+  <div class="mnav-logo">MOVIENATION</div>
+  <a href="index.html"><i class="ri-home-line"></i>Home</a>
+  <a href="movies.html"><i class="ri-film-line"></i>Movies</a>
+  <a href="upcoming.html"><i class="ri-time-line"></i>Upcoming</a>
+  <a href="movies.html?genre=Action"><i class="ri-sword-line"></i>Action</a>
+  <a href="movies.html?genre=Sci-Fi"><i class="ri-rocket-line"></i>Sci-Fi</a>
+  <a href="movies.html?genre=Horror"><i class="ri-skull-line"></i>Horror</a>
+  <a href="movies.html?genre=Drama"><i class="ri-theatre-line"></i>Drama</a>
+  <a href="about.html"><i class="ri-information-line"></i>About</a>
+  <a href="contact.html"><i class="ri-mail-line"></i>Contact</a>
+  <div class="mnav-search">
+    <div class="mnav-search-wrap">
+      <i class="ri-search-line"></i>
+      <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off">
     </div>
   </div>
+</div>
 
-  <!-- HERO -->
-  <section id="hero" aria-label="Featured movies">
-    <div id="hslides"></div>
-    <div class="hdots" id="hdots"></div>
-    <div class="harrows">
-      <button class="harr" id="harr-p" aria-label="Previous slide"><i class="ri-arrow-left-s-line"></i></button>
-      <button class="harr" id="harr-n" aria-label="Next slide"><i class="ri-arrow-right-s-line"></i></button>
-    </div>
-  </section>
-
-  <!-- AD BANNER -->
-  <div class="wrap" style="padding-top:32px">
-    <div class="ad-slot ad-banner"><i class="ri-advertisement-line"></i>Advertisement — 728×90</div>
+<!-- HERO -->
+<section id="hero" aria-label="Featured movies">
+  <div id="hslides"></div>
+  <div class="hdots" id="hdots"></div>
+  <div class="harrows">
+    <button class="harr" id="harr-p" aria-label="Previous slide"><i class="ri-arrow-left-s-line"></i></button>
+    <button class="harr" id="harr-n" aria-label="Next slide"><i class="ri-arrow-right-s-line"></i></button>
   </div>
+</section>
 
-  <!-- TRENDING -->
-  <section class="section">
-    <div class="wrap">
-      <div class="sec-top">
-        <div>
-          <div class="sec-label"><span>Hot This Week</span></div>
-          <h2 class="sec-title">Trending Now</h2>
-        </div>
-        <div class="row-ctrl">
-          <a class="sec-link" href="movies.html?sort=popular">View All <i class="ri-arrow-right-line"></i></a>
-          <button class="rarr" onclick="scrollRow('tr-row',-1)" aria-label="Scroll left"><i
-              class="ri-arrow-left-s-line"></i></button>
-          <button class="rarr" onclick="scrollRow('tr-row',1)" aria-label="Scroll right"><i
-              class="ri-arrow-right-s-line"></i></button>
-        </div>
-      </div>
-      <div class="mrow" id="tr-row"></div>
-    </div>
-  </section>
+<!-- AD BANNER -->
+<div class="wrap" style="padding-top:32px">
+  <div class="ad-slot ad-banner"><i class="ri-advertisement-line"></i>Advertisement — 728×90</div>
+</div>
 
-  <!-- AD INLINE -->
+<!-- TRENDING -->
+<section class="section">
   <div class="wrap">
-    <div class="ad-slot ad-inline"><i class="ri-advertisement-line"></i>Advertisement — 970×90</div>
+    <div class="sec-top">
+      <div>
+        <div class="sec-label"><span>Hot This Week</span></div>
+        <h2 class="sec-title">Trending Now</h2>
+      </div>
+      <div class="row-ctrl">
+        <a class="sec-link" href="movies.html?sort=popular">View All <i class="ri-arrow-right-line"></i></a>
+        <button class="rarr" onclick="scrollRow('tr-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="rarr" onclick="scrollRow('tr-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
+      </div>
+    </div>
+    <div class="mrow" id="tr-row"></div>
   </div>
+</section>
 
-  <!-- TOP RATED -->
-  <section class="section sec-alt">
-    <div class="wrap">
-      <div class="sec-top">
-        <div>
-          <div class="sec-label"><span>IMDb 8.0+</span></div>
-          <h2 class="sec-title">Top Rated</h2>
-        </div>
-        <div class="row-ctrl">
-          <a class="sec-link" href="movies.html?sort=rating">View All <i class="ri-arrow-right-line"></i></a>
-          <button class="rarr" onclick="scrollRow('top-row',-1)" aria-label="Scroll left"><i
-              class="ri-arrow-left-s-line"></i></button>
-          <button class="rarr" onclick="scrollRow('top-row',1)" aria-label="Scroll right"><i
-              class="ri-arrow-right-s-line"></i></button>
-        </div>
+<!-- AD INLINE -->
+<div class="wrap">
+  <div class="ad-slot ad-inline"><i class="ri-advertisement-line"></i>Advertisement — 970×90</div>
+</div>
+
+<!-- TOP RATED -->
+<section class="section sec-alt">
+  <div class="wrap">
+    <div class="sec-top">
+      <div>
+        <div class="sec-label"><span>IMDb 8.0+</span></div>
+        <h2 class="sec-title">Top Rated</h2>
       </div>
-      <div class="mrow" id="top-row"></div>
-    </div>
-  </section>
-
-  <!-- NEW RELEASES -->
-  <section class="section">
-    <div class="wrap">
-      <div class="sec-top">
-        <div>
-          <div class="sec-label"><span>Just Added</span></div>
-          <h2 class="sec-title">New Releases</h2>
-        </div>
-        <div class="row-ctrl">
-          <a class="sec-link" href="movies.html?sort=year">View All <i class="ri-arrow-right-line"></i></a>
-          <button class="rarr" onclick="scrollRow('new-row',-1)" aria-label="Scroll left"><i
-              class="ri-arrow-left-s-line"></i></button>
-          <button class="rarr" onclick="scrollRow('new-row',1)" aria-label="Scroll right"><i
-              class="ri-arrow-right-s-line"></i></button>
-        </div>
-      </div>
-      <div class="mrow" id="new-row"></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section sec-alt">
-    <div class="wrap">
-      <div class="cta-box">
-        <div class="cta-title">Discover Your Next Favourite Film</div>
-        <p class="cta-sub">Browse hundreds of movies across every genre. Filter, sort, and find exactly what you're
-          looking for.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a class="btn-amber" href="movies.html"><i class="ri-compass-3-line"></i>Browse All Movies</a>
-          <a class="btn-ghost" href="upcoming.html"><i class="ri-time-line"></i>Upcoming Films</a>
-        </div>
+      <div class="row-ctrl">
+        <a class="sec-link" href="movies.html?sort=rating">View All <i class="ri-arrow-right-line"></i></a>
+        <button class="rarr" onclick="scrollRow('top-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="rarr" onclick="scrollRow('top-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
       </div>
     </div>
-  </section>
+    <div class="mrow" id="top-row"></div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <span class="flogo">MOVIENATION</span>
-          <p class="fdesc">Your ultimate destination for discovering and watching the world's best films — from
-            Hollywood blockbusters to indie gems.</p>
-          <div class="fsocial">
-            <a class="fsoc" href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-            <a class="fsoc" href="#" aria-label="Twitter"><i class="ri-twitter-x-fill"></i></a>
-            <a class="fsoc" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-            <a class="fsoc" href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
-          </div>
-        </div>
-        <div class="fc">
-          <h5>Explore</h5>
-          <ul>
-            <li><a href="movies.html">All Movies</a></li>
-            <li><a href="upcoming.html">Upcoming</a></li>
-            <li><a href="movies.html?sort=rating">Top Rated</a></li>
-            <li><a href="movies.html?sort=year">New Releases</a></li>
-          </ul>
-        </div>
-        <div class="fc">
-          <h5>Genres</h5>
-          <ul>
-            <li><a href="movies.html?genre=Action">Action</a></li>
-            <li><a href="movies.html?genre=Sci-Fi">Sci-Fi</a></li>
-            <li><a href="movies.html?genre=Horror">Horror</a></li>
-            <li><a href="movies.html?genre=Drama">Drama</a></li>
-            <li><a href="movies.html?genre=Comedy">Comedy</a></li>
-          </ul>
-        </div>
-        <div class="fc">
-          <h5>Company</h5>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Use</a></li>
-            <li><a href="admin.html">Admin</a></li>
-          </ul>
-        </div>
+<!-- NEW RELEASES -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-top">
+      <div>
+        <div class="sec-label"><span>Just Added</span></div>
+        <h2 class="sec-title">New Releases</h2>
       </div>
-      <div class="fbot">
-        <p>© 2025 MovieNation. All rights reserved.</p>
-        <div class="fbot-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="contact.html">Contact</a>
-        </div>
+      <div class="row-ctrl">
+        <a class="sec-link" href="movies.html?sort=year">View All <i class="ri-arrow-right-line"></i></a>
+        <button class="rarr" onclick="scrollRow('new-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="rarr" onclick="scrollRow('new-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
       </div>
     </div>
-    <button id="installBtn" style="display:none;" class="install-btn">
-      ⬇ Download App
-    </button>
-    <script>
-      let deferredPrompt;
-      const installBtn = document.getElementById("installBtn");
+    <div class="mrow" id="new-row"></div>
+  </div>
+</section>
 
-      window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = "inline-block";
-      });
-
-      installBtn.addEventListener("click", () => {
-        deferredPrompt.prompt();
-      });
-    </script>
-  </footer>
-
-  <!-- TRAILER MODAL -->
-  <div class="mbg" id="tm" onclick="if(event.target===this)closeTrailer()" aria-modal="true" role="dialog">
-    <div class="tmodal">
-      <div class="tmodal-head">
-        <span class="trailer-title"></span>
-        <button class="mbox-close" onclick="closeTrailer()" aria-label="Close"><i class="ri-close-line"></i></button>
+<!-- CTA -->
+<section class="section sec-alt">
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="cta-title">Discover Your Next Favourite Film</div>
+      <p class="cta-sub">Browse hundreds of movies across every genre. Filter, sort, and find exactly what you're looking for.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn-amber" href="movies.html"><i class="ri-compass-3-line"></i>Browse All Movies</a>
+        <a class="btn-ghost" href="upcoming.html"><i class="ri-time-line"></i>Upcoming Films</a>
       </div>
-      <div class="vid-wrap"></div>
     </div>
   </div>
+</section>
 
-  <button id="btt" title="Back to top" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
-  <div id="toasts" aria-live="polite"></div>
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="flogo">MOVIENATION</span>
+        <p class="fdesc">Your ultimate destination for discovering and watching the world's best films — from Hollywood blockbusters to indie gems.</p>
+        <div class="fsocial">
+          <a class="fsoc" href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+          <a class="fsoc" href="#" aria-label="Twitter"><i class="ri-twitter-x-fill"></i></a>
+          <a class="fsoc" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a class="fsoc" href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+        </div>
+      </div>
+      <div class="fc">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="movies.html">All Movies</a></li>
+          <li><a href="upcoming.html">Upcoming</a></li>
+          <li><a href="movies.html?sort=rating">Top Rated</a></li>
+          <li><a href="movies.html?sort=year">New Releases</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Genres</h5>
+        <ul>
+          <li><a href="movies.html?genre=Action">Action</a></li>
+          <li><a href="movies.html?genre=Sci-Fi">Sci-Fi</a></li>
+          <li><a href="movies.html?genre=Horror">Horror</a></li>
+          <li><a href="movies.html?genre=Drama">Drama</a></li>
+          <li><a href="movies.html?genre=Comedy">Comedy</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 MovieNation. All rights reserved.</p>
+      <div class="fbot-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/data-manager.js"></script>
-  <script src="js/app.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js")
-          .then(() => console.log("Service Worker registered"))
-          .catch(err => console.error("SW error:", err));
-      });
-    }
-  </script>
+<!-- TRAILER MODAL -->
+<div class="mbg" id="tm" onclick="if(event.target===this)closeTrailer()" aria-modal="true" role="dialog">
+  <div class="tmodal">
+    <div class="tmodal-head">
+      <span class="trailer-title"></span>
+      <button class="mbox-close" onclick="closeTrailer()" aria-label="Close"><i class="ri-close-line"></i></button>
+    </div>
+    <div class="vid-wrap"></div>
+  </div>
+</div>
+
+<button id="btt" title="Back to top" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+<div id="toasts" aria-live="polite"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/data-manager.js"></script>
+<script src="js/app.js"></script>
 </body>
-
 </html>
