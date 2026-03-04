@@ -90,7 +90,7 @@ const DB = (() => {
   function _startListener() {
     const fstore = window.MN_FIRESTORE;
     _unsub = fstore.collection(FS_COL)
-      .orderBy('createdAt', 'desc')
+      .orderBy('id', 'asc')
       .onSnapshot(
         snap => {
           _cache = snap.docs.map(d => d.data());
@@ -167,7 +167,7 @@ const DB = (() => {
     _san(movie);
     const docId = movie.slug; // use readable slug
     if (_useFS) {
-      await window.MN_FIRESTORE.collection(FS_COL).doc(docId).set(movie);
+      await window.MN_FIRESTORE.collection(FS_COL).doc(String(movie.id)).set(movie);
     } else {
       const arr = lsGet(LS_KEY) || [];
       arr.push(movie);
