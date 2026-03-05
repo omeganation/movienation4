@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /omega-8472-control-panel.html
