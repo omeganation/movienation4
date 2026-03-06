@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /omega-8472-control-panel.html
+Disallow: /mn7-control-omega.html
