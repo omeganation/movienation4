@@ -247,7 +247,7 @@ ul{list-style:none}
 .uc-body{padding:clamp(14px,3vw,20px)}
 .uc-genre{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
 .uc-title{font-family:var(--ft);font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:1px;margin-bottom:8px}
-.uc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-clamp:3}
+.uc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .uc-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .uc-date{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:5px}
 

@@ -1,8 +1,5 @@
 {
   "projects": {
-    "default": "movienation-1",
-    "movienation": "movienation-1"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "fluted-equinox-444914-v8"
+  }
 }
