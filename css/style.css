@@ -103,7 +103,7 @@ ul{list-style:none}
 .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .hero-rating{display:flex;align-items:center;gap:5px;color:var(--gold);font-weight:700;font-size:.88rem}
 .hero-year,.hero-dur,.hero-genre-tag{font-size:.76rem;color:var(--muted);background:rgba(255,255,255,.07);padding:3px 10px;border-radius:50px;border:1px solid var(--border)}
-.hero-desc{font-size:clamp(.84rem,1.5vw,.96rem);color:var(--muted);max-width:500px;line-height:1.75;margin-bottom:clamp(18px,3vw,28px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hero-desc{font-size:clamp(.84rem,1.5vw,.96rem);color:var(--muted);max-width:500px;line-height:1.75;margin-bottom:clamp(18px,3vw,28px);display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-hero-watch{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;background:var(--gold);color:#000;font-weight:800;font-size:.88rem;transition:.25s;box-shadow:0 8px 30px rgba(232,184,75,.4);border:none;cursor:pointer}
 .btn-hero-watch:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(232,184,75,.55)}
@@ -247,7 +247,7 @@ ul{list-style:none}
 .uc-body{padding:clamp(14px,3vw,20px)}
 .uc-genre{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
 .uc-title{font-family:var(--ft);font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:1px;margin-bottom:8px}
-.uc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.uc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-clamp:3}
 .uc-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .uc-date{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:5px}
 
