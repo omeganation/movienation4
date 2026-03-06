@@ -1,242 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MovieNation — Stream & Discover the Best Films</title>
-<meta name="description" content="Discover, watch and download the best movies. Browse trending, top rated, and new releases on MovieNation.">
-<meta property="og:title" content="MovieNation">
-<meta property="og:description" content="Stream and discover the best films online.">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1022752814095909"
-     crossorigin="anonymous"></script>
-<!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
-<link rel="manifest" href="/assets/icons/site.webmanifest">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MovieNation — Stream & Discover the Best Films</title>
+  <meta name="description"
+    content="Discover, watch and download the best movies. Browse trending, top rated, and new releases on MovieNation.">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pre-logo">MOVIENATION</div>
-  <div class="pre-tagline">Stream · Discover · Download</div>
-  <div class="pre-bar"><div class="pre-fill"></div></div>
-</div>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIE<span style="color:var(--text)">NATION</span></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="movies.html">Movies</a>
-      <a href="movies.html?genre=Action">Action</a>
-      <a href="movies.html?genre=Sci-Fi">Sci-Fi</a>
-      <a href="movies.html?genre=Horror">Horror</a>
-      <a href="movies.html?genre=Drama">Drama</a>
-      <a href="upcoming.html">Upcoming</a>
-    </div>
-    <div class="nav-search">
-      <i class="ri-search-line si"></i>
-      <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off" aria-label="Search movies">
-      <div id="sdrop"></div>
-    </div>
-    <div class="nav-actions">
-      <button class="nav-icon-btn theme-btn" title="Toggle theme" aria-label="Toggle dark/light mode"></button>
-      <button id="burger-btn" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+  <div id="preloader">
+    <div class="pre-logo">MOVIENATION</div>
+    <div class="pre-tagline">Stream · Discover · Download</div>
+    <div class="pre-bar">
+      <div class="pre-fill"></div>
     </div>
   </div>
-</nav>
-
-<!-- MOBILE NAV -->
-<div id="mnav" aria-hidden="true">
-  <div class="mnav-logo">MOVIENATION</div>
-  <a href="index.html"><i class="ri-home-line"></i>Home</a>
-  <a href="movies.html"><i class="ri-film-line"></i>Movies</a>
-  <a href="upcoming.html"><i class="ri-time-line"></i>Upcoming</a>
-  <a href="movies.html?genre=Action"><i class="ri-sword-line"></i>Action</a>
-  <a href="movies.html?genre=Sci-Fi"><i class="ri-rocket-line"></i>Sci-Fi</a>
-  <a href="movies.html?genre=Horror"><i class="ri-skull-line"></i>Horror</a>
-  <a href="movies.html?genre=Drama"><i class="ri-theatre-line"></i>Drama</a>
-  <a href="about.html"><i class="ri-information-line"></i>About</a>
-  <a href="contact.html"><i class="ri-mail-line"></i>Contact</a>
-  <div class="mnav-search">
-    <div class="mnav-search-wrap">
-      <i class="ri-search-line"></i>
-      <input class="search-input" type="text" placeholder="Search movies…" autocomplete="off">
-    </div>
-  </div>
-</div>
-
-<!-- HERO -->
-<section id="hero" aria-label="Featured movies">
-  <div id="hslides"></div>
-  <div class="hdots" id="hdots"></div>
-  <div class="harrows">
-    <button class="harr" id="harr-p" aria-label="Previous slide"><i class="ri-arrow-left-s-line"></i></button>
-    <button class="harr" id="harr-n" aria-label="Next slide"><i class="ri-arrow-right-s-line"></i></button>
-  </div>
-</section>
-
-<!-- AD BANNER -->
-<div class="wrap" style="padding-top:32px">
-  <div class="ad-slot ad-banner"><i class="ri-advertisement-line"></i>Advertisement — 728×90</div>
-</div>
-
-<!-- TRENDING -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-top">
-      <div>
-        <div class="sec-label"><span>Hot This Week</span></div>
-        <h2 class="sec-title">Trending Now</h2>
-      </div>
-      <div class="row-ctrl">
-        <a class="sec-link" href="movies.html?sort=popular">View All <i class="ri-arrow-right-line"></i></a>
-        <button class="rarr" onclick="scrollRow('tr-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
-        <button class="rarr" onclick="scrollRow('tr-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
-      </div>
-    </div>
-    <div class="mrow" id="tr-row"></div>
-  </div>
-</section>
-
-<!-- AD INLINE -->
-<div class="wrap">
-  <div class="ad-slot ad-inline"><i class="ri-advertisement-line"></i>Advertisement — 970×90</div>
-</div>
-
-<!-- TOP RATED -->
-<section class="section sec-alt">
-  <div class="wrap">
-    <div class="sec-top">
-      <div>
-        <div class="sec-label"><span>IMDb 8.0+</span></div>
-        <h2 class="sec-title">Top Rated</h2>
-      </div>
-      <div class="row-ctrl">
-        <a class="sec-link" href="movies.html?sort=rating">View All <i class="ri-arrow-right-line"></i></a>
-        <button class="rarr" onclick="scrollRow('top-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
-        <button class="rarr" onclick="scrollRow('top-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
-      </div>
-    </div>
-    <div class="mrow" id="top-row"></div>
-  </div>
-</section>
-
-<!-- NEW RELEASES -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-top">
-      <div>
-        <div class="sec-label"><span>Just Added</span></div>
-        <h2 class="sec-title">New Releases</h2>
-      </div>
-      <div class="row-ctrl">
-        <a class="sec-link" href="movies.html?sort=year">View All <i class="ri-arrow-right-line"></i></a>
-        <button class="rarr" onclick="scrollRow('new-row',-1)" aria-label="Scroll left"><i class="ri-arrow-left-s-line"></i></button>
-        <button class="rarr" onclick="scrollRow('new-row',1)" aria-label="Scroll right"><i class="ri-arrow-right-s-line"></i></button>
-      </div>
-    </div>
-    <div class="mrow" id="new-row"></div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section sec-alt">
-  <div class="wrap">
-    <div class="cta-box">
-      <div class="cta-title">Discover Your Next Favourite Film</div>
-      <p class="cta-sub">Browse hundreds of movies across every genre. Filter, sort, and find exactly what you're looking for.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <a class="btn-amber" href="movies.html"><i class="ri-compass-3-line"></i>Browse All Movies</a>
-        <a class="btn-ghost" href="upcoming.html"><i class="ri-time-line"></i>Upcoming Films</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="flogo">MOVIENATION</span>
-        <p class="fdesc">Your ultimate destination for discovering and watching the world's best films — from Hollywood blockbusters to indie gems.</p>
-        <div class="fsocial">
-          <a class="fsoc" href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-          <a class="fsoc" href="#" aria-label="Twitter"><i class="ri-twitter-x-fill"></i></a>
-          <a class="fsoc" href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-          <a class="fsoc" href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIE<span
+          style="-webkit-text-fill-color:var(--text)">NATION</span></a>
+      <div id="mnav">
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="movies.html">Movies</a>
+          <a href="movies.html?genre=Action">Action</a>
+          <a href="movies.html?genre=Drama">Drama</a>
+          <a href="upcoming.html">Upcoming</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="nav-search">
+          <i class="ri-search-line si"></i>
+          <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
+          <div id="sdrop"></div>
         </div>
       </div>
-      <div class="fc">
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="movies.html">All Movies</a></li>
-          <li><a href="upcoming.html">Upcoming</a></li>
-          <li><a href="movies.html?sort=rating">Top Rated</a></li>
-          <li><a href="movies.html?sort=year">New Releases</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h5>Genres</h5>
-        <ul>
-          <li><a href="movies.html?genre=Action">Action</a></li>
-          <li><a href="movies.html?genre=Sci-Fi">Sci-Fi</a></li>
-          <li><a href="movies.html?genre=Horror">Horror</a></li>
-          <li><a href="movies.html?genre=Drama">Drama</a></li>
-          <li><a href="movies.html?genre=Comedy">Comedy</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Use</a></li>
-          
-        </ul>
+      <div class="nav-actions">
+        <button class="nav-icon-btn theme-btn" title="Toggle theme"><i class="ri-moon-line"></i></button>
+        <a href="movies.html" class="btn-nav-cta">Browse All</a>
+        <button id="burger-btn" onclick="toggleNav()"><i class="ri-menu-line"></i></button>
       </div>
     </div>
-    <div class="fbot">
-      <p>© 2025 MovieNation. All rights reserved.</p>
-      <div class="fbot-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  </nav>
 
-<!-- TRAILER MODAL -->
-<div class="mbg" id="tm" onclick="if(event.target===this)closeTrailer()" aria-modal="true" role="dialog">
-  <div class="tmodal">
-    <div class="tmodal-head">
-      <span class="trailer-title"></span>
-      <button class="mbox-close" onclick="closeTrailer()" aria-label="Close"><i class="ri-close-line"></i></button>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-slides" id="hero-slides"></div>
+    <div class="hero-content">
+      <div class="hero-inner" id="hero-info"></div>
     </div>
+    <div class="hero-dots" id="hero-dots"></div>
+    <div class="hero-progress" id="hero-progress"></div>
+  </section>
+
+  <!-- TRENDING -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label-sm">This Week</div>
+          <h2 class="sec-title">Trending Now</h2>
+        </div>
+        <a href="movies.html" class="sec-link">See All <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="scroll-row" id="trending-row"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED SPOTLIGHT -->
+  <section class="section sec-alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label-sm">Editor's Pick</div>
+          <h2 class="sec-title">Featured Films</h2>
+        </div>
+      </div>
+      <div class="featured-strip" id="featured-strip"></div>
+    </div>
+  </section>
+
+  <!-- BROWSE BY GENRE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label-sm">Explore</div>
+          <h2 class="sec-title">Browse by Genre</h2>
+        </div>
+      </div>
+      <div class="genre-pills" id="genre-pills"></div>
+      <div class="movies-grid" id="genre-grid"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section
+    style="padding:clamp(40px,6vw,70px) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="wrap">
+      <div class="stats-bar">
+        <div class="sb-item"><span class="sb-num" id="stat-movies">—</span>
+          <div class="sb-label">Movies</div>
+        </div>
+        <div class="sb-item"><span class="sb-num" id="stat-genres">11</span>
+          <div class="sb-label">Genres</div>
+        </div>
+        <div class="sb-item"><span class="sb-num">4K</span>
+          <div class="sb-label">HD Quality</div>
+        </div>
+        <div class="sb-item"><span class="sb-num">Free</span>
+          <div class="sb-label">No Subscription</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP RATED -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label-sm">Best of All Time</div>
+          <h2 class="sec-title">Top Rated</h2>
+        </div>
+        <a href="movies.html?sort=rating" class="sec-link">View All <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="movies-grid" id="top-rated-grid"></div>
+    </div>
+  </section>
+
+  <!-- NEW RELEASES -->
+  <section class="section sec-alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label-sm">Just Added</div>
+          <h2 class="sec-title">New Releases</h2>
+        </div>
+        <a href="movies.html?filter=new" class="sec-link">See All <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="scroll-row" id="new-row"></div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section
+    style="padding:clamp(56px,8vw,100px) 0;background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid var(--border)">
+    <div class="wrap" style="text-align:center">
+      <div class="sec-label-sm" style="justify-content:center;margin-bottom:16px">Coming Soon</div>
+      <h2 style="font-family:var(--ft);font-size:clamp(2rem,6vw,4rem);letter-spacing:2px;margin-bottom:16px">Don't Miss
+        Upcoming Releases</h2>
+      <p
+        style="color:var(--muted);font-size:clamp(.88rem,1.5vw,1rem);max-width:480px;margin:0 auto 32px;line-height:1.8">
+        Stay ahead with the most anticipated films of the year — countdowns, trailers & release dates.</p>
+      <a href="upcoming.html" class="btn-amber"><i class="ri-time-line"></i>View Upcoming Films</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIENATION</a>
+          <p>Your ultimate destination for discovering, streaming and downloading the best films from around the world.
+          </p>
+          <div class="footer-social">
+            <a class="fsoc" href="#"><i class="ri-twitter-x-line"></i></a>
+            <a class="fsoc" href="#"><i class="ri-instagram-line"></i></a>
+            <a class="fsoc" href="#"><i class="ri-facebook-line"></i></a>
+            <a class="fsoc" href="#"><i class="ri-youtube-line"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Explore</h5><a href="movies.html">All Movies</a><a href="movies.html?genre=Action">Action</a><a
+            href="movies.html?genre=Drama">Drama</a><a href="movies.html?genre=Sci-Fi">Sci-Fi</a><a
+            href="upcoming.html">Upcoming</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5><a href="about.html">About Us</a><a href="contact.html">Contact</a><a
+            href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a>
+        </div>
+        <div class="footer-col">
+          <h5>Genres</h5><a href="movies.html?genre=Comedy">Comedy</a><a href="movies.html?genre=Horror">Horror</a><a
+            href="movies.html?genre=Thriller">Thriller</a><a href="movies.html?genre=Animation">Animation</a><a
+            href="movies.html?genre=Documentary">Documentary</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 MovieNation. All rights reserved.</span>
+      </div>
+  </footer>
+
+  <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ri-arrow-up-line"></i></button>
+  <div id="toasts"></div>
+  <div id="tm">
+    <div class="trailer-head"><span class="trailer-title"></span><button class="trailer-close"
+        onclick="closeTrailer()"><i class="ri-close-line"></i></button></div>
     <div class="vid-wrap"></div>
   </div>
-</div>
 
-<button id="btt" title="Back to top" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
-<div id="toasts" aria-live="polite"></div>
-
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/data.js"></script>
-<script src="js/data-manager.js"></script>
-<script src="js/app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/data-manager.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/app.js"></script>
 </body>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1022752814095909"
+  crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86"
+  data-ad-client="ca-pub-1022752814095909" data-ad-slot="9758180604"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  
 </html>

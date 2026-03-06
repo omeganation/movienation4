@@ -8,9 +8,7 @@
 /* ── OPTION A: Hardcode your keys here ──────────────────
    OR use Option B (paste in Admin → Settings → Connect)
    ─────────────────────────────────────────────────────── */
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const FB_CONFIG = {
   apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
   authDomain: "movienation-1.firebaseapp.com",
   projectId: "movienation-1",
@@ -32,11 +30,9 @@ const firebaseConfig = {
   } catch (e) { }
 
   // Fall back to hardcoded
-  // Fall back to hardcoded
   if (!cfg) {
-    const allOk = Object.values(firebaseConfig)
-      .every(v => v && !String(v).startsWith('YOUR_'));
-    if (allOk) cfg = firebaseConfig;
+    const allOk = Object.values(FB_CONFIG).every(v => !String(v).startsWith('YOUR_'));
+    if (allOk) cfg = FB_CONFIG;
   }
 
   if (!cfg) {
