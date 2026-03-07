@@ -1,122 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Movie — MovieNation</title>
-<meta name="description" content="Watch and discover movies on MovieNation.">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1">
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-<link rel="stylesheet" href="css/style.css">
+  <title>Movie — MovieNation</title>
+  <meta name="description" content="Watch and discover movies on MovieNation.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1">
+
+  <!-- FAVICONS / LOGO -->
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+
+  <!-- FONTS & ICONS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
-<div id="preloader">
-  <div class="pre-logo-wrap"><img src="logo.png" alt="MovieNation"></div>
-  <div class="pre-tagline">Stream · Discover · Download</div>
-  <div class="pre-bar"><div class="pre-fill"></div></div>
-</div>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="pre-logo-wrap"><img src="/logo.png" alt="MovieNation"></div>
+    <div class="pre-tagline">Stream · Discover · Download</div>
+    <div class="pre-bar">
+      <div class="pre-fill"></div>
+    </div>
   </div>
-  <div class="pre-bar"><div class="pre-fill"></div></div>
-</div>
 
-<aside id="sidebar">
-  <div class="sb-logo-wrap">
-    <a href="/" class="sb-logo">
-      <img src="logo.png" alt="MovieNation">
-      <span class="sb-logo-text">MOVIENATION</span>
-    </a>
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sb-logo-wrap">
+      <a href="/" class="sb-logo">
+        <img src="/logo.png" alt="MovieNation">
+        <span class="sb-logo-text">MOVIENATION</span>
+      </a>
+    </div>
+    <nav class="sb-nav">
+      <a href="/" class="sb-link"><i class="ri-home-5-line"></i>Home</a>
+      <a href="/movies" class="sb-link"><i class="ri-film-line"></i>Movies</a>
+      <a href="/movies?genre=Action" class="sb-link"><i class="ri-sword-line"></i>Action</a>
+      <a href="/movies?genre=Drama" class="sb-link"><i class="ri-drama-line"></i>Drama</a>
+      <a href="/movies?genre=Sci-Fi" class="sb-link"><i class="ri-rocket-line"></i>Sci-Fi</a>
+      <a href="/upcoming" class="sb-link"><i class="ri-time-line"></i>Upcoming</a>
+      <div class="sb-divider"></div>
+      <a href="/about" class="sb-link"><i class="ri-information-line"></i>About</a>
+      <a href="/contact" class="sb-link"><i class="ri-mail-line"></i>Contact</a>
+    </nav>
+  </aside>
+
+  <!-- PAGE CONTENT -->
+  <div id="page-content">
+    <div id="movie-page"></div>
   </div>
-  <nav class="sb-nav">
-    <a href="/" class="sb-link"><i class="ri-home-5-line"></i>Home</a>
-    <a href="/movies" class="sb-link"><i class="ri-film-line"></i>Movies</a>
-    <a href="/movies?genre=Action" class="sb-link"><i class="ri-sword-line"></i>Action</a>
-    <a href="/movies?genre=Drama" class="sb-link"><i class="ri-drama-line"></i>Drama</a>
-    <a href="/movies?genre=Sci-Fi" class="sb-link"><i class="ri-rocket-line"></i>Sci-Fi</a>
-    <a href="/upcoming" class="sb-link"><i class="ri-time-line"></i>Upcoming</a>
-    <div class="sb-divider"></div>
-    <a href="/about" class="sb-link"><i class="ri-information-line"></i>About</a>
-    <a href="/contact" class="sb-link"><i class="ri-mail-line"></i>Contact</a>
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottom-nav" aria-label="Main navigation">
+    <div class="bn-inner">
+      <a href="/" class="bn-btn" aria-label="Home"><i class="ri-home-5-line"></i><span>Home</span></a>
+      <a href="/movies" class="bn-btn" aria-label="Movies"><i class="ri-film-line"></i><span>Movies</span></a>
+      <button class="bn-btn" onclick="openMobileSearch()" aria-label="Search"><i class="ri-search-line"></i><span>Search</span></button>
+      <a href="/upcoming" class="bn-btn" aria-label="Upcoming"><i class="ri-time-line"></i><span>Upcoming</span></a>
+      <button class="bn-btn" onclick="openSettings()" aria-label="Settings"><i class="ri-settings-3-line"></i><span>Settings</span></button>
+    </div>
   </nav>
-  <div class="sb-search">
-    <div class="sb-search-inner" id="nav-search-wrap">
-      <i class="ri-search-line"></i>
-      <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
-      <button class="sb-s-clear" onclick="clearSearch()"><i class="ri-close-line"></i></button>
-      <div id="sdrop"></div>
-    </div>
-  </div>
-  <div class="sb-bottom">
-    <button class="sb-link theme-btn"><i class="ri-moon-line"></i>Toggle Theme</button>
-    <button class="sb-link" onclick="openSettings()"><i class="ri-settings-3-line"></i>Settings</button>
-  </div>
-</aside>
-<div id="page-content">
-  <div id="movie-page"></div>
-</div>
-<nav id="bottom-nav" aria-label="Main navigation">
-  <div class="bn-inner">
-    <a href="/" class="bn-btn" aria-label="Home"><i class="ri-home-5-line"></i><span>Home</span></a>
-    <a href="/movies" class="bn-btn" aria-label="Movies"><i class="ri-film-line"></i><span>Movies</span></a>
-    <button class="bn-btn" onclick="openMobileSearch()" aria-label="Search"><i class="ri-search-line"></i><span>Search</span></button>
-    <a href="/upcoming" class="bn-btn" aria-label="Upcoming"><i class="ri-time-line"></i><span>Upcoming</span></a>
-    <button class="bn-btn" onclick="openSettings()" aria-label="Settings"><i class="ri-settings-3-line"></i><span>Settings</span></button>
-  </div>
-</nav>
 
-<div id="mobile-search" role="dialog">
-  <div class="ms-bar">
-    <button class="ms-back" onclick="closeMobileSearch()"><i class="ri-arrow-left-line"></i></button>
-    <div class="ms-input-wrap">
-      <i class="ri-search-line"></i>
-      <input type="text" id="ms-input" placeholder="Search movies…" autocomplete="off">
+  <!-- SETTINGS PANEL -->
+  <div id="settings-panel" role="dialog">
+    <div class="sp-handle"></div>
+    <div class="sp-header">
+      <span class="sp-title">SETTINGS</span>
+      <button class="sp-close" onclick="closeSettings()"><i class="ri-close-line"></i></button>
     </div>
-  </div>
-  <div id="ms-results"></div>
-</div>
-
-<div id="settings-overlay" onclick="closeSettings()"></div>
-<div id="settings-panel" role="dialog">
-  <div class="sp-handle"></div>
-  <div class="sp-header">
-    <span class="sp-title">SETTINGS</span>
-    <button class="sp-close" onclick="closeSettings()"><i class="ri-close-line"></i></button>
-  </div>
-  <div class="sp-body">
-    <div class="sp-section">
-      <div class="sp-section-title">Appearance</div>
-      <div class="sp-theme-row">
-        <button class="sp-theme-btn active" id="sp-dark-btn" onclick="setTheme('dark')"><i class="ri-moon-line"></i> Dark</button>
-        <button class="sp-theme-btn" id="sp-light-btn" onclick="setTheme('light')"><i class="ri-sun-line"></i> Light</button>
+    <div class="sp-body">
+      <div class="sp-section">
+        <div class="sp-section-title">Appearance</div>
+        <div class="sp-theme-row">
+          <button class="sp-theme-btn active" id="sp-dark-btn" onclick="setTheme('dark')"><i class="ri-moon-line"></i> Dark</button>
+          <button class="sp-theme-btn" id="sp-light-btn" onclick="setTheme('light')"><i class="ri-sun-line"></i> Light</button>
+        </div>
       </div>
     </div>
-    <div class="sp-section">
-      <div class="sp-section-title">Watch History</div>
-      <div id="watch-history-list"><div class="sp-watch-empty">No movies watched yet</div></div>
-      <button class="sp-clear-btn" onclick="clearWatchHistory()"><i class="ri-delete-bin-line"></i>Clear History</button>
-    </div>
   </div>
-</div>
 
-<div id="tm" role="dialog">
-  <div class="trailer-head"><span class="trailer-title"></span><button class="trailer-close" onclick="closeTrailer()"><i class="ri-close-line"></i></button></div>
-  <div class="vid-wrap"></div>
-</div>
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
-<div id="toasts" aria-live="polite"></div>
+  <!-- TRAILER MODAL -->
+  <div id="tm" role="dialog">
+    <div class="trailer-head">
+      <span class="trailer-title"></span>
+      <button class="trailer-close" onclick="closeTrailer()"><i class="ri-close-line"></i></button>
+    </div>
+    <div class="vid-wrap"></div>
+  </div>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/data.js"></script>
-<script src="js/data-manager.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/app.js"></script>
+  <!-- BACK TO TOP -->
+  <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
+
+  <!-- TOASTS -->
+  <div id="toasts" aria-live="polite"></div>
+
+  <!-- FIREBASE & SCRIPTS -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/data.js"></script>
+  <script src="/js/data-manager.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/app.js"></script>
 </body>
+
 </html>
