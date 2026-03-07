@@ -1,152 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Browse Movies — MovieNation</title>
-<meta name="description" content="Browse and filter the MovieNation collection.">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1">
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.movies-page-hero{padding:clamp(90px,14vw,150px) 0 clamp(28px,5vw,48px);background:linear-gradient(180deg,var(--bg2),var(--bg));text-align:center}
+.movies-page-hero h1{font-family:var(--ft);font-size:clamp(2.5rem,7vw,5rem);letter-spacing:3px;margin-bottom:10px}
+.movies-page-hero p{color:var(--muted);font-size:clamp(.84rem,1.5vw,.96rem)}
+#result-count{font-size:.78rem;color:var(--muted);white-space:nowrap}
+</style>
 </head>
 <body>
-
-<div id="preloader">
-  <div class="pre-logo-wrap"><img src="logo.png" alt="MovieNation"></div>
-  <div class="pre-tagline">Stream · Discover · Download</div>
-  <div class="pre-bar"><div class="pre-fill"></div></div>
-</div>
-  </div>
-  <div class="pre-bar"><div class="pre-fill"></div></div>
-</div>
-
-<aside id="sidebar">
-  <div class="sb-logo-wrap">
-    <a href="/" class="sb-logo">
-      <img src="logo.png" alt="MovieNation">
-      <span class="sb-logo-text">MOVIENATION</span>
-    </a>
-  </div>
-  <nav class="sb-nav">
-    <a href="/" class="sb-link"><i class="ri-home-5-line"></i>Home</a>
-    <a href="/movies" class="sb-link"><i class="ri-film-line"></i>Movies</a>
-    <a href="/movies?genre=Action" class="sb-link"><i class="ri-sword-line"></i>Action</a>
-    <a href="/movies?genre=Drama" class="sb-link"><i class="ri-drama-line"></i>Drama</a>
-    <a href="/movies?genre=Sci-Fi" class="sb-link"><i class="ri-rocket-line"></i>Sci-Fi</a>
-    <a href="/upcoming" class="sb-link"><i class="ri-time-line"></i>Upcoming</a>
-    <div class="sb-divider"></div>
-    <a href="/about" class="sb-link"><i class="ri-information-line"></i>About</a>
-    <a href="/contact" class="sb-link"><i class="ri-mail-line"></i>Contact</a>
-  </nav>
-  <div class="sb-search">
-    <div class="sb-search-inner" id="nav-search-wrap">
-      <i class="ri-search-line"></i>
-      <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
-      <button class="sb-s-clear" onclick="clearSearch()"><i class="ri-close-line"></i></button>
-      <div id="sdrop"></div>
-    </div>
-  </div>
-  <div class="sb-bottom">
-    <button class="sb-link theme-btn"><i class="ri-moon-line"></i>Toggle Theme</button>
-    <button class="sb-link" onclick="openSettings()"><i class="ri-settings-3-line"></i>Settings</button>
-  </div>
-</aside>
-<div id="page-content">
-  <div class="page-hero">
-    <div class="wrap">
-      <h1>Browse Movies</h1>
-      <p>Filter by genre, sort by rating — the complete collection</p>
-    </div>
-  </div>
-  <section class="section" style="padding-top:clamp(18px,3vw,28px)">
-    <div class="wrap">
-      <div class="filter-bar">
-        <div class="filter-search"><i class="ri-search-line"></i><input type="text" id="filter-q" placeholder="Title or director…" oninput="filterMovies()"></div>
-        <select id="filter-genre" class="sort-sel" onchange="filterMovies()"><option value="">All Genres</option></select>
-        <select id="filter-sort" class="sort-sel" onchange="filterMovies()">
-          <option value="">Default</option><option value="rating">Top Rated</option>
-          <option value="year-desc">Newest First</option><option value="year-asc">Oldest First</option>
-          <option value="title">A – Z</option>
-        </select>
-        <select id="filter-status" class="sort-sel" onchange="filterMovies()">
-          <option value="">All Films</option><option value="new">New Releases</option>
-          <option value="featured">Featured</option><option value="top">Top Rated 8+</option>
-          <option value="watchlist">My Watchlist</option>
-        <option value="watched">Watched</option>
-        </select>
-        <span id="result-count"></span>
+<div id="preloader"><div class="pre-logo">MOVIENATION</div><div class="pre-bar"><div class="pre-fill"></div></div></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIENATION</a>
+    <div id="mnav">
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="movies.html" class="active">Movies</a>
+        <a href="upcoming.html">Upcoming</a><a href="about.html">About</a>
       </div>
-      <div class="movies-grid" id="movies-grid"></div>
-      <div class="empty-state" id="movies-empty" style="display:none"><i class="ri-film-line"></i><p>No movies match your filters.</p></div>
-      <div id="scroll-sentinel"></div>
+      <div class="nav-search"><i class="ri-search-line si"></i><input type="text" id="nav-q" placeholder="Search…" autocomplete="off"><div id="sdrop"></div></div>
     </div>
-  </section>
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-bottom">
-        <span>© 2025 MovieNation</span>
-        <a href="/" style="color:var(--amber);display:flex;align-items:center;gap:5px;font-size:.74rem"><i class="ri-arrow-left-line"></i>Back to Home</a>
-      </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-btn"><i class="ri-moon-line"></i></button>
+      <button id="burger-btn" onclick="toggleNav()"><i class="ri-menu-line"></i></button>
     </div>
-  </footer>
-</div>
-<nav id="bottom-nav" aria-label="Main navigation">
-  <div class="bn-inner">
-    <a href="/" class="bn-btn" aria-label="Home"><i class="ri-home-5-line"></i><span>Home</span></a>
-    <a href="/movies" class="bn-btn" aria-label="Movies"><i class="ri-film-line"></i><span>Movies</span></a>
-    <button class="bn-btn" onclick="openMobileSearch()" aria-label="Search"><i class="ri-search-line"></i><span>Search</span></button>
-    <a href="/upcoming" class="bn-btn" aria-label="Upcoming"><i class="ri-time-line"></i><span>Upcoming</span></a>
-    <button class="bn-btn" onclick="openSettings()" aria-label="Settings"><i class="ri-settings-3-line"></i><span>Settings</span></button>
   </div>
 </nav>
 
-<div id="mobile-search" role="dialog">
-  <div class="ms-bar">
-    <button class="ms-back" onclick="closeMobileSearch()"><i class="ri-arrow-left-line"></i></button>
-    <div class="ms-input-wrap">
-      <i class="ri-search-line"></i>
-      <input type="text" id="ms-input" placeholder="Search movies…" autocomplete="off">
-    </div>
-  </div>
-  <div id="ms-results"></div>
-</div>
-
-<div id="settings-overlay" onclick="closeSettings()"></div>
-<div id="settings-panel" role="dialog">
-  <div class="sp-handle"></div>
-  <div class="sp-header">
-    <span class="sp-title">SETTINGS</span>
-    <button class="sp-close" onclick="closeSettings()"><i class="ri-close-line"></i></button>
-  </div>
-  <div class="sp-body">
-    <div class="sp-section">
-      <div class="sp-section-title">Appearance</div>
-      <div class="sp-theme-row">
-        <button class="sp-theme-btn active" id="sp-dark-btn" onclick="setTheme('dark')"><i class="ri-moon-line"></i> Dark</button>
-        <button class="sp-theme-btn" id="sp-light-btn" onclick="setTheme('light')"><i class="ri-sun-line"></i> Light</button>
-      </div>
-    </div>
-    <div class="sp-section">
-      <div class="sp-section-title">Watch History</div>
-      <div id="watch-history-list"><div class="sp-watch-empty">No movies watched yet</div></div>
-      <button class="sp-clear-btn" onclick="clearWatchHistory()"><i class="ri-delete-bin-line"></i>Clear History</button>
-    </div>
+<div class="movies-page-hero">
+  <div class="wrap">
+    <div class="sec-label-sm" style="justify-content:center;margin-bottom:10px">Full Library</div>
+    <h1>Browse Movies</h1>
+    <p>Explore our complete collection — filter by genre, sort by rating</p>
   </div>
 </div>
 
-<div id="tm" role="dialog">
-  <div class="trailer-head"><span class="trailer-title"></span><button class="trailer-close" onclick="closeTrailer()"><i class="ri-close-line"></i></button></div>
-  <div class="vid-wrap"></div>
-</div>
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="ri-arrow-up-line"></i></button>
-<div id="toasts" aria-live="polite"></div>
+<section class="section" style="padding-top:clamp(24px,4vw,40px)">
+  <div class="wrap">
+    <div class="filter-bar">
+      <div class="filter-search"><i class="ri-search-line"></i><input type="text" id="filter-q" placeholder="Search title or director…" oninput="filterMovies()"></div>
+      <select id="filter-genre" class="sort-sel" onchange="filterMovies()"><option value="">All Genres</option></select>
+      <select id="filter-sort" class="sort-sel" onchange="filterMovies()">
+        <option value="">Default</option>
+        <option value="rating">Top Rated</option>
+        <option value="year-desc">Newest First</option>
+        <option value="year-asc">Oldest First</option>
+        <option value="title">A–Z</option>
+      </select>
+      <select id="filter-status" class="sort-sel" onchange="filterMovies()">
+        <option value="">All Films</option>
+        <option value="new">New Releases</option>
+        <option value="featured">Featured</option>
+        <option value="top">Top Rated 8+</option>
+      </select>
+      <span id="result-count" style="margin-left:auto"></span>
+    </div>
+    <div class="movies-grid" id="movies-grid"></div>
+    <div class="empty-state" id="movies-empty" style="display:none"><i class="ri-film-line"></i><p>No movies match your filters.</p></div>
+  </div>
+</section>
 
+<footer style="margin-top:auto">
+  <div class="footer-inner">
+    <div class="footer-bottom"><span>© 2025 MovieNation</span><a href="index.html" style="color:var(--gold)">← Back to Home</a></div>
+  </div>
+</footer>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ri-arrow-up-line"></i></button>
+<div id="toasts"></div>
+<div id="tm"><div class="trailer-head"><span class="trailer-title"></span><button class="trailer-close" onclick="closeTrailer()"><i class="ri-close-line"></i></button></div><div class="vid-wrap"></div></div>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>
@@ -154,5 +80,4 @@
 <script src="js/data-manager.js"></script>
 <script src="js/analytics.js"></script>
 <script src="js/app.js"></script>
-</body>
-</html>
+</body></html>
