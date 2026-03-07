@@ -1,2 +1,0 @@
-User-agent: *
-Disallow: /mn7-control-omega.html
