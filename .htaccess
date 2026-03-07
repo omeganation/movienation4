@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^movies$     movies.html  [L]
+RewriteRule ^upcoming$   upcoming.html [L]
+RewriteRule ^about$      about.html   [L]
+RewriteRule ^contact$    contact.html  [L]
+RewriteRule ^privacy$    privacy.html  [L]
+RewriteRule ^terms$      terms.html   [L]
+RewriteRule ^movie/.+$   movie.html   [L]
+
+ErrorDocument 404 /index.html

@@ -1,10 +1,16 @@
 {
   "hosting": {
     "public": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "ignore": ["firebase.json", ".firebaserc", "**/node_modules/**"],
+    "rewrites": [
+      { "source": "/movies",    "destination": "/movies.html" },
+      { "source": "/upcoming",  "destination": "/upcoming.html" },
+      { "source": "/about",     "destination": "/about.html" },
+      { "source": "/contact",   "destination": "/contact.html" },
+      { "source": "/privacy",   "destination": "/privacy.html" },
+      { "source": "/terms",     "destination": "/terms.html" },
+      { "source": "/movie/**",  "destination": "/movie.html" },
+      { "source": "**",         "destination": "/index.html" }
     ]
   }
 }

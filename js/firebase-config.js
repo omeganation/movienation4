@@ -9,13 +9,12 @@
    OR use Option B (paste in Admin → Settings → Connect)
    ─────────────────────────────────────────────────────── */
 const FB_CONFIG = {
-  apiKey: "AIzaSyBkly_76tjXhBFhnTJ9cOtORoSOq1YGHP8",
-  authDomain: "movienation-1.firebaseapp.com",
-  projectId: "movienation-1",
-  storageBucket: "movienation-1.firebasestorage.app",
-  messagingSenderId: "236535077737",
-  appId: "1:236535077737:web:9cab53046c037127e9fbf8",
-  measurementId: "G-BCT6G788XD"
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
 };
 
 /* ── DO NOT EDIT BELOW ── */
@@ -27,7 +26,7 @@ const FB_CONFIG = {
   try {
     const saved = localStorage.getItem('mn_fb_config');
     if (saved) cfg = JSON.parse(saved);
-  } catch (e) { }
+  } catch(e) {}
 
   // Fall back to hardcoded
   if (!cfg) {

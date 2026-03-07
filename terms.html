@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>Terms of Use — MovieNation</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
 <link rel="stylesheet" href="css/style.css">
@@ -11,14 +15,86 @@
 <body>
 <nav id="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><span class="nav-dot"></span>MOVIE<span style="color:var(--text)">NATION</span></a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="movies.html">Movies</a><a href="upcoming.html">Upcoming</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-    <div class="nav-actions"><button class="nav-icon-btn theme-btn"></button><button id="burger-btn"><span></span><span></span><span></span></button></div>
+    <div class="footer-logo">
+      <img src="logo.png" alt="MN" class="nav-logo-img">
+      <span class="nav-logo-text">MOVIENATION</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/movies">Movies</a>
+      <a href="/movies?genre=Action">Action</a>
+      <a href="/movies?genre=Drama">Drama</a>
+      <a href="/upcoming">Upcoming</a>
+      <a href="/about">About</a>
+    </div>
+    <div class="nav-search" id="nav-search-wrap">
+      <i class="ri-search-line si"></i>
+      <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
+      <button class="s-clear" onclick="clearSearch()"><i class="ri-close-line"></i></button>
+      <div id="sdrop"></div>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-btn" title="Toggle theme"><i class="ri-moon-line"></i></button>
+      <a href="/movies" class="btn-nav-cta">Browse All</a>
+    </div>
   </div>
 </nav>
+
+<!-- BOTTOM NAV (mobile/tablet) -->
+<nav id="bottom-nav" aria-label="Main navigation">
+  <div class="bnav-inner">
+    <a href="/" class="bnav-btn" data-path="/" aria-label="Home"><i class="ri-home-line"></i>Home</a>
+    <a href="/movies" class="bnav-btn" data-path="/movies" aria-label="Movies"><i class="ri-film-line"></i>Movies</a>
+    <button class="bnav-btn" onclick="openSearchOverlay()" aria-label="Search"><i class="ri-search-line"></i>Search</button>
+    <a href="/upcoming" class="bnav-btn" data-path="/upcoming" aria-label="Upcoming"><i class="ri-calendar-line"></i>Upcoming</a>
+    <button class="bnav-btn" onclick="openSettings()" aria-label="Settings"><i class="ri-settings-3-line"></i>Settings</button>
+  </div>
+</nav>
+
+<!-- SEARCH OVERLAY -->
+<div id="search-overlay" role="dialog" aria-label="Search">
+  <div class="sov-head">
+    <button class="sov-close" onclick="closeSearchOverlay()" aria-label="Close"><i class="ri-arrow-left-line"></i></button>
+    <div class="sov-input-wrap"><i class="ri-search-line"></i><input type="text" id="sov-q" placeholder="Search movies, directors…" autocomplete="off"></div>
+  </div>
+  <div class="sov-results" id="sov-results"></div>
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settings-bg"></div>
+<div id="settings-panel" role="dialog" aria-label="Settings">
+  <div class="sp-drag"></div>
+  <div class="sp-inner">
+    <div class="sp-title">Settings</div>
+    <div class="sp-section">
+      <div class="sp-section-title">Appearance</div>
+      <div class="theme-row">
+        <button class="theme-opt" data-t="dark" onclick="setTheme('dark')"><i class="ri-moon-line"></i>Dark</button>
+        <button class="theme-opt" data-t="light" onclick="setTheme('light')"><i class="ri-sun-line"></i>Light</button>
+      </div>
+    </div>
+    <div class="sp-section">
+      <div class="sp-section-title" style="display:flex;justify-content:space-between;align-items:center"><span>Recently Watched</span><button onclick="clearWatchedHistory()" style="font-size:.72rem;color:var(--muted2);background:none;border:none;cursor:pointer">Clear</button></div>
+      <div id="sp-watched-list"></div>
+    </div>
+    <div class="sp-section">
+      <div class="sp-section-title">Quick Links</div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <a href="/movies?filter=watchlist" onclick="closeSettings()" style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--card2);border-radius:var(--r);font-size:.83rem;color:var(--muted)"><i class="ri-bookmark-line" style="color:var(--amber)"></i>My Watchlist</a>
+        <a href="/movies?filter=watched" onclick="closeSettings()" style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--card2);border-radius:var(--r);font-size:.83rem;color:var(--muted)"><i class="ri-history-line" style="color:var(--amber)"></i>Watch History</a>
+        <a href="/upcoming" onclick="closeSettings()" style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--card2);border-radius:var(--r);font-size:.83rem;color:var(--muted)"><i class="ri-calendar-line" style="color:var(--amber)"></i>Coming Soon</a>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="mnav-search"><i class="ri-search-line"></i><input type="text" id="mnav-q" placeholder="Search…" autocomplete="off"></div>
+    <div id="mnav-results"></div>
+    <a href="/movies" class="btn-amber mnav-browse" onclick="closeNav()"><i class="ri-compass-3-line"></i>Browse All Movies</a>
+  </div>
+</div>
 <div id="mnav">
   <div class="mnav-logo">MOVIENATION</div>
-  <a href="index.html"><i class="ri-home-line"></i>Home</a><a href="movies.html"><i class="ri-film-line"></i>Movies</a><a href="upcoming.html"><i class="ri-time-line"></i>Upcoming</a>
+  <a href="/"><i class="ri-home-line"></i>Home</a><a href="/movies"><i class="ri-film-line"></i>Movies</a><a href="/upcoming"><i class="ri-time-line"></i>Upcoming</a>
 </div>
 <div class="ptop" style="margin-top:var(--nav-h)">
   <div class="wrap">
@@ -35,15 +111,15 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand"><span class="flogo">MOVIENATION</span><p class="fdesc">Your ultimate destination for films.</p></div>
-      <div class="fc"><h5>Explore</h5><ul><li><a href="movies.html">All Movies</a></li><li><a href="upcoming.html">Upcoming</a></li></ul></div>
-      <div class="fc"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="fc"><h5>Legal</h5><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
+      <div class="fc"><h5>Explore</h5><ul><li><a href="/movies">All Movies</a></li><li><a href="/upcoming">Upcoming</a></li></ul></div>
+      <div class="fc"><h5>Company</h5><ul><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul></div>
+      <div class="fc"><h5>Legal</h5><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Use</a></li></ul></div>
     </div>
     <div class="fbot"><p>© 2025 MovieNation.</p></div>
   </div>
 </footer>
 <button id="btt" title="Back to top"><i class="ri-arrow-up-line"></i></button>
-<div id="toasts"></div>
+<div id="toasts" aria-live="polite"></div>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>

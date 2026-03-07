@@ -1,0 +1,7 @@
+/movies     /movies.html    200
+/upcoming   /upcoming.html  200
+/about      /about.html     200
+/contact    /contact.html   200
+/privacy    /privacy.html   200
+/terms      /terms.html     200
+/movie/*    /movie.html     200
