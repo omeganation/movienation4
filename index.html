@@ -1,251 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<base href="/">
+  <title>MovieNation — Stream & Discover the Best Films</title>
 
-<title>MovieNation — Stream & Discover the Best Films</title>
+  <link rel="icon" href="/favicon.png">
+  <link rel="manifest" href="/manifest.json">
 
-<meta name="description" content="Discover, watch and download the best movies. Browse trending, top rated, and new releases on MovieNation.">
-<meta name="theme-color" content="#07090f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/icon-192.png">
-<link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
-
-<link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pre-logo-wrap">
-    <img src="/logo.png" alt="MovieNation">
-  </div>
-  <div class="pre-tagline">Stream · Discover · Download</div>
-  <div class="pre-bar">
-    <div class="pre-fill"></div>
-  </div>
-</div>
-
-<!-- NAVBAR -->
-<nav id="nav">
-  <div class="nav-inner">
-
-    <a class="nav-logo" href="/">
-      <img src="/logo.png" class="nav-logo-img" alt="MN">
-      <span class="nav-logo-text">MOVIENATION</span>
-    </a>
-
-    <div class="nav-links">
-      <a href="/" class="active">Home</a>
-      <a href="/movies">Movies</a>
-      <a href="/movies?genre=Action">Action</a>
-      <a href="/movies?genre=Drama">Drama</a>
-      <a href="/upcoming">Upcoming</a>
-      <a href="/about">About</a>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="pre-logo-wrap">
+      <img src="/logo.png" alt="MovieNation">
     </div>
-
-    <div class="nav-search" id="nav-search-wrap">
-      <i class="ri-search-line"></i>
-      <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
-      <button onclick="clearSearch()">
-        <i class="ri-close-line"></i>
-      </button>
-      <div id="sdrop"></div>
+    <div class="pre-tagline">Stream · Discover · Download</div>
+    <div class="pre-bar">
+      <div class="pre-fill"></div>
     </div>
-
   </div>
-</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div id="hero-slides"></div>
-  <div class="hero-content">
-    <div class="hero-inner" id="hero-info"></div>
-  </div>
-  <div class="hero-dots" id="hero-dots"></div>
-</section>
+  <!-- NAVBAR -->
+  <nav id="nav">
+    <div class="nav-inner">
 
-<!-- TRENDING -->
-<section class="section">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">This Week</div>
-        <h2 class="sec-title">Trending Now</h2>
-      </div>
-      <a href="/movies" class="sec-link">
-        See All <i class="ri-arrow-right-line"></i>
+      <a class="nav-logo" href="/">
+        <img src="/logo.png" class="nav-logo-img" alt="MN">
+        <span class="nav-logo-text">MOVIENATION</span>
       </a>
-    </div>
 
-    <div id="trending-row"></div>
-
-  </div>
-</section>
-
-<!-- WATCH THIS WEEK -->
-<section class="section sec-alt">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">Our Picks</div>
-        <h2 class="sec-title">Watch This Week</h2>
-      </div>
-    </div>
-
-    <div class="wtw-grid" id="wtw-grid"></div>
-
-  </div>
-</section>
-
-<!-- FEATURED -->
-<section class="section">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">Editor's Pick</div>
-        <h2 class="sec-title">Featured Films</h2>
-      </div>
-    </div>
-
-    <div class="featured-strip" id="featured-strip"></div>
-
-  </div>
-</section>
-
-<!-- GENRE -->
-<section class="section sec-alt">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">Explore</div>
-        <h2 class="sec-title">Browse by Genre</h2>
-      </div>
-    </div>
-
-    <div id="genre-pills"></div>
-    <div class="movies-grid" id="genre-grid"></div>
-
-  </div>
-</section>
-
-<!-- TOP RATED -->
-<section class="section">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">Best of All Time</div>
-        <h2 class="sec-title">Top Rated</h2>
-      </div>
-      <a href="/movies?sort=rating" class="sec-link">
-        View All <i class="ri-arrow-right-line"></i>
-      </a>
-    </div>
-
-    <div class="movies-grid" id="top-rated-grid"></div>
-
-  </div>
-</section>
-
-<!-- NEW RELEASES -->
-<section class="section sec-alt">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow">Just Added</div>
-        <h2 class="sec-title">New Releases</h2>
+      <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/movies">Movies</a>
+        <a href="/movies?genre=Action">Action</a>
+        <a href="/movies?genre=Drama">Drama</a>
+        <a href="/upcoming">Upcoming</a>
+        <a href="/about">About</a>
       </div>
 
-      <a href="/movies?filter=new" class="sec-link">
-        See All <i class="ri-arrow-right-line"></i>
-      </a>
+      <div class="nav-search" id="nav-search-wrap">
+        <i class="ri-search-line"></i>
+        <input type="text" id="nav-q" placeholder="Search movies…" autocomplete="off">
+        <button onclick="clearSearch()">
+          <i class="ri-close-line"></i>
+        </button>
+        <div id="sdrop"></div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div id="hero-slides"></div>
+    <div class="hero-content">
+      <div class="hero-inner" id="hero-info"></div>
+    </div>
+    <div class="hero-dots" id="hero-dots"></div>
+  </section>
+
+  <!-- TRENDING -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">This Week</div>
+          <h2 class="sec-title">Trending Now</h2>
+        </div>
+        <a href="/movies" class="sec-link">
+          See All <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div id="trending-row"></div>
+
+    </div>
+  </section>
+
+  <!-- WATCH THIS WEEK -->
+  <section class="section sec-alt">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Our Picks</div>
+          <h2 class="sec-title">Watch This Week</h2>
+        </div>
+      </div>
+
+      <div class="wtw-grid" id="wtw-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Editor's Pick</div>
+          <h2 class="sec-title">Featured Films</h2>
+        </div>
+      </div>
+
+      <div class="featured-strip" id="featured-strip"></div>
+
+    </div>
+  </section>
+
+  <!-- GENRE -->
+  <section class="section sec-alt">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Explore</div>
+          <h2 class="sec-title">Browse by Genre</h2>
+        </div>
+      </div>
+
+      <div id="genre-pills"></div>
+      <div class="movies-grid" id="genre-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- TOP RATED -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Best of All Time</div>
+          <h2 class="sec-title">Top Rated</h2>
+        </div>
+        <a href="/movies?sort=rating" class="sec-link">
+          View All <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="movies-grid" id="top-rated-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- NEW RELEASES -->
+  <section class="section sec-alt">
+    <div class="wrap">
+
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Just Added</div>
+          <h2 class="sec-title">New Releases</h2>
+        </div>
+
+        <a href="/movies?filter=new" class="sec-link">
+          See All <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div id="new-row"></div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <div class="footer-logo">
+            <img src="/logo.png" class="footer-logo-img" alt="MN">
+            <span class="footer-logo-text">MOVIENATION</span>
+          </div>
+
+          <p>Your destination for discovering, streaming and downloading the best films.</p>
+
+        </div>
+
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <a href="/movies">All Movies</a>
+          <a href="/movies?genre=Action">Action</a>
+          <a href="/movies?genre=Drama">Drama</a>
+          <a href="/movies?genre=Sci-Fi">Sci-Fi</a>
+          <a href="/upcoming">Upcoming</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="/about">About Us</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 MovieNation</span>
+        <span>Built for cinema lovers</span>
+      </div>
+
     </div>
 
-    <div id="new-row"></div>
+  </footer>
 
-  </div>
-</section>
+  <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="ri-arrow-up-line"></i>
+  </button>
 
-<!-- FOOTER -->
-<footer>
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-<div class="footer-inner">
-
-<div class="footer-grid">
-
-<div class="footer-brand">
-
-<div class="footer-logo">
-<img src="/logo.png" class="footer-logo-img" alt="MN">
-<span class="footer-logo-text">MOVIENATION</span>
-</div>
-
-<p>Your destination for discovering, streaming and downloading the best films.</p>
-
-</div>
-
-<div class="footer-col">
-<h5>Explore</h5>
-<a href="/movies">All Movies</a>
-<a href="/movies?genre=Action">Action</a>
-<a href="/movies?genre=Drama">Drama</a>
-<a href="/movies?genre=Sci-Fi">Sci-Fi</a>
-<a href="/upcoming">Upcoming</a>
-</div>
-
-<div class="footer-col">
-<h5>Company</h5>
-<a href="/about">About Us</a>
-<a href="/contact">Contact</a>
-<a href="/privacy">Privacy</a>
-<a href="/terms">Terms</a>
-</div>
-
-</div>
-
-<div class="footer-bottom">
-<span>© 2025 MovieNation</span>
-<span>Built for cinema lovers</span>
-</div>
-
-</div>
-
-</footer>
-
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-<i class="ri-arrow-up-line"></i>
-</button>
-
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<!-- JS FILES -->
-<script src="/js/firebase-config.js"></script>
-<script src="/js/data.js"></script>
-<script src="/js/data-manager.js"></script>
-<script src="/js/analytics.js"></script>
-<script src="/js/app.js"></script>
+  <!-- JS FILES -->
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/data.js"></script>
+  <script src="/js/data-manager.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/app.js"></script>
 
 </body>
+
 </html>
