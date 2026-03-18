@@ -6,6 +6,9 @@ import {
   bulkSaveToFirebase,
   subscribeToMovies,
   isFirebaseConfigured,
+  getDeviceId,
+  saveUserData,
+  loadUserData,
 } from "./firebase.js";
 
 /* ═══════════════════════════════════════════════════
@@ -1547,9 +1550,15 @@ const FONTS = [
   {name:"Rounded",   val:"system-ui,-apple-system,sans-serif"},
 ];
 const getProfile = () => LS.g("mn_profile", {name:"Movie Fan",handle:"@moviefan",bio:"",avatarText:"🎬",avatarImg:null});
-const saveProfile = v => LS.s("mn_profile", v);
+const saveProfile = async v => {
+  LS.s("mn_profile", v);
+  if(isFirebaseConfigured()) await saveUserData(getDeviceId(), {profile: v});
+};
 const getThemePrefs = () => LS.g("mn_theme", {accentIdx:0,fontIdx:0,textScale:100});
-const saveThemePrefs = v => LS.s("mn_theme", v);
+const saveThemePrefs = async v => {
+  LS.s("mn_theme", v);
+  if(isFirebaseConfigured()) await saveUserData(getDeviceId(), {theme: v});
+};
 
 /* Apply accent color to CSS variables */
 /* Convert hex color to r,g,b values */
@@ -1623,10 +1632,14 @@ function applyTextScale(scale){
 }
 
 const getFavs = () => { try { return JSON.parse(localStorage.getItem("mn_favs")||"[]"); } catch { return []; } };
+const saveFavsToFirebase = async (favs) => {
+  if(isFirebaseConfigured()) await saveUserData(getDeviceId(), {favorites: favs});
+};
 const toggleFav = (id) => {
   const favs = getFavs();
   const next = favs.includes(id) ? favs.filter(f=>f!==id) : [...favs, id];
   localStorage.setItem("mn_favs", JSON.stringify(next));
+  saveFavsToFirebase(next); // fire-and-forget sync
   return next;
 };
 
@@ -2321,8 +2334,8 @@ function Settings({dark,setDark}){
   const[themePrefs,setThemePrefsRaw]=useState(getThemePrefs);
   const favCount=getFavs().length;
 
-  const saveP=p=>{setProfileRaw(p);saveProfile(p);};
-  const saveT=t=>{setThemePrefsRaw(t);saveThemePrefs(t);};
+  const saveP=p=>{setProfileRaw(p);saveProfile(p);};  // saveProfile is now async, fire-and-forget
+  const saveT=t=>{setThemePrefsRaw(t);saveThemePrefs(t);};  // saveThemePrefs is now async
 
   const changeAccent=idx=>{
     const t={...themePrefs,accentIdx:idx};
@@ -3554,6 +3567,47 @@ export default function App(){
     applyAccent(tp.accentIdx||0);
     applyFont(tp.fontIdx||0);
     applyTextScale(tp.textScale||100);
+  },[]);
+
+  /* Load user data from Firebase on startup (restores favs/settings after cache clear) */
+  useEffect(()=>{
+    if(!isFirebaseConfigured()) return;
+    const deviceId = getDeviceId();
+    loadUserData(deviceId).then(data => {
+      if(!data) return;
+      // Restore favorites
+      if(data.favorites && Array.isArray(data.favorites)){
+        localStorage.setItem("mn_favs", JSON.stringify(data.favorites));
+      }
+      // Restore profile
+      if(data.profile && typeof data.profile === "object"){
+        LS.s("mn_profile", data.profile);
+      }
+      // Restore theme
+      if(data.theme && typeof data.theme === "object"){
+        LS.s("mn_theme", data.theme);
+        applyAccent(data.theme.accentIdx||0);
+        applyFont(data.theme.fontIdx||0);
+        applyTextScale(data.theme.textScale||100);
+      }
+    });
+  },[]);
+
+  /* Auto-reload when new version is deployed (service worker update) */
+  useEffect(()=>{
+    if(!("serviceWorker" in navigator)) return;
+    navigator.serviceWorker.register("/sw.js").then(reg => {
+      reg.addEventListener("updatefound", () => {
+        const newWorker = reg.installing;
+        newWorker?.addEventListener("statechange", () => {
+          if(newWorker.state === "installed" && navigator.serviceWorker.controller){
+            // New version available — show toast and reload after short delay
+            showToast("🔄 Website updated! Reloading…");
+            setTimeout(() => window.location.reload(), 2500);
+          }
+        });
+      });
+    }).catch(()=>{});
   },[]);
 
   const setDark=v=>{setDarkRaw(v);saveDk(v);};

@@ -18,7 +18,6 @@ import {
   enableIndexedDbPersistence,
 } from "firebase/firestore";
 
-// ─── STEP 1: Paste your Firebase config here ───────────────
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBDIUFY0gP8r6kME178-cAW_afQSerrkSA",
@@ -26,8 +25,7 @@ const firebaseConfig = {
   projectId: "movienation01",
   storageBucket: "movienation01.firebasestorage.app",
   messagingSenderId: "800722031223",
-  appId: "1:800722031223:web:4d0338cb405bb7f1c26c72",
-  measurementId: "G-NNZGJRZWD9"
+  appId: "1:800722031223:web:4d0338cb405bb7f1c26c72"
 };
 // ───────────────────────────────────────────────────────────
 
@@ -155,3 +153,59 @@ export function subscribeToMovies(onData, onStatus) {
 
   return unsub;
 }
+
+// ═══════════════════════════════════════════════════════════
+//  USER DATA SYNC — Favorites, Settings, Profile
+//  Each visitor gets a random UUID (stored in localStorage).
+//  Their data is saved to Firestore under users/{deviceId}/
+//  This means:
+//    ✓ Data persists after clearing cache/redeploying
+//    ✓ Data syncs across same browser (IndexedDB + Firestore)
+//    ✗ Different devices still separate (no login = no cross-device)
+// ═══════════════════════════════════════════════════════════
+
+// ─── Get or create a stable device ID ──────────────────────
+export function getDeviceId() {
+  let id = localStorage.getItem("mn_device_id");
+  if (!id) {
+    id = "d_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 9);
+    localStorage.setItem("mn_device_id", id);
+  }
+  return id;
+}
+
+// ─── Save user prefs to Firestore ──────────────────────────
+export async function saveUserData(deviceId, data) {
+  if (!db) return { ok: false };
+  try {
+    await setDoc(
+      doc(db, "users", deviceId),
+      { ...data, _updatedAt: Date.now() },
+      { merge: true }    // merge = don't overwrite fields we didn't send
+    );
+    return { ok: true };
+  } catch (e) {
+    console.error("saveUserData error:", e.message);
+    return { ok: false, error: e.message };
+  }
+}
+
+// ─── Load user prefs from Firestore ────────────────────────
+export async function loadUserData(deviceId) {
+  if (!db) return null;
+  try {
+    const { getDoc } = await import("firebase/firestore");
+    const snap = await getDoc(doc(db, "users", deviceId));
+    return snap.exists() ? snap.data() : null;
+  } catch (e) {
+    console.error("loadUserData error:", e.message);
+    return null;
+  }
+}
+
+// ─── Firestore rules to add ────────────────────────────────
+// Add this to your existing Firestore rules:
+//
+// match /users/{deviceId} {
+//   allow read, write: if true;
+// }
