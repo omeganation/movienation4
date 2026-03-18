@@ -18,6 +18,7 @@ import {
   enableIndexedDbPersistence,
 } from "firebase/firestore";
 
+// ─── STEP 1: Paste your Firebase config here ───────────────
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBDIUFY0gP8r6kME178-cAW_afQSerrkSA",
